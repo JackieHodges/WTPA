@@ -1,0 +1,20 @@
+{
+  "name": "WTPA",
+  "version": "1.0.0",
+  "description": "Wheres The Party At: React Trip Planning App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JackieHodges/WTPA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JackieHodges/WTPA/issues"
+  },
+  "homepage": "https://github.com/JackieHodges/WTPA#readme"
+}
