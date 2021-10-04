@@ -6,7 +6,7 @@ function NavBar() {
     return (
         <Navbar bg="light">
             <Container>
-                <Navbar.Brand href="#home">Brand link</Navbar.Brand>
+                <Navbar.Brand href="/">Brand link</Navbar.Brand>
             </Container>
         </Navbar>
     )
