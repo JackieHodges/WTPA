@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import API from "../utils/API";
 
 function NewTripPage() {
 
     const [stepNumber, setStepNumber] = useState(1)
 
-    function onClick() {
+    function onClick(event) {
+        event.preventDefault()
         if (stepNumber === 1) {
-            // let tripName = document.getElementById("tripName").value
-            // let groupMembers = document.getElementById("membersArray").value
-            // console.log(groupMembers)
-            setStepNumber(2);
+            let tripName = document.getElementById("tripName").value
+            API.createTrip({
+                trip_name: tripName
+            })
+                .then(res => console.log(res.data))
+                .then(setStepNumber(2))
+                // let tripName = document.getElementById("tripName").value
+                // let groupMembers = document.getElementById("membersArray").value
+                // console.log(groupMembers)
+                .catch(err => console.log(err));
         } else if (stepNumber === 2) {
             setStepNumber(3)
         }
