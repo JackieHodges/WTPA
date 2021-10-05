@@ -5,6 +5,7 @@ import LandingPage from './pages/LandingPage';
 import "react-bootstrap"
 import NavBar from './components/navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NewTripPage from './pages/NewTripPage';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Router>
         <NavBar />
         <Route exact path="/" component={LandingPage} />
+        <Route exact path="/newTrip" component={NewTripPage} />
       </Router>
     </div>
   );

@@ -31,7 +31,7 @@ function LandingPage() {
                     <Button variant="primary" onClick={handleClose}>
                         Find a trip
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" href="/newTrip" onClick={handleClose}>
                         Start a trip
                     </Button>
                 </Modal.Footer>
