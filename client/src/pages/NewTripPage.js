@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { Container, Form, Button, InputGroup, FormControl } from "react-bootstrap";
+import { Container, Form, Button } from "react-bootstrap";
 
 function NewTripPage() {
 
     const [stepNumber, setStepNumber] = useState(1)
 
     function onClick() {
-        // let tripName = document.getElementById("tripName").value
-        // let groupMembers = document.getElementById("membersArray").value
-        // console.log(groupMembers)
-        if (stepNumber === 1){
+        if (stepNumber === 1) {
+            // let tripName = document.getElementById("tripName").value
+            // let groupMembers = document.getElementById("membersArray").value
+            // console.log(groupMembers)
             setStepNumber(2);
         } else if (stepNumber === 2) {
             setStepNumber(3)
