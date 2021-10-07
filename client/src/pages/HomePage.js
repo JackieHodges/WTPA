@@ -1,14 +1,14 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import API from "../utils/API"
+import { UserContext } from "../utils/UserContext";
 
 
 function HomePage() {
 
     const { user, isAuthenticated } = useAuth0();
-    const [currentUser, setCurrentUser] = useState({});
-
+    const { currentUser, setCurrentUser } = useContext(UserContext);
 
     useEffect(() => {
         if (user) {
@@ -20,7 +20,7 @@ function HomePage() {
                 .then(res => setCurrentUser(res.data[0]))
                 .catch(err => console.log(err));
         }
-    }, [user])
+    }, [])
 
 
     return (
@@ -28,7 +28,7 @@ function HomePage() {
             <Container>
                 <Row>
                     <Col>
-                        <h2>{user.name}'s Dashboard</h2>
+                        <h2>{currentUser.user_name}'s Dashboard</h2>
                         <h5>What would you like to do?</h5>
                     </Col>
                 </Row>
