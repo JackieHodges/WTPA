@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import API from "../utils/API";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function NewTripPage() {
 
     const [stepNumber, setStepNumber] = useState(1)
+    const { isAuthenticated } = useAuth0();
+
 
     function onClick(event) {
         event.preventDefault()
@@ -24,14 +27,14 @@ function NewTripPage() {
         }
     }
 
-    function addAssociation(tripId){
+    function addAssociation(tripId) {
         console.log(`this is the trip id ${tripId}`)
         API.addAssociation({
             trip_id: tripId,
             user_id: 1
         })
-        .then(res => console.log(res.data))
-        .catch(err => console.log(err))
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
     }
 
     function onCancel() {
@@ -68,15 +71,16 @@ function NewTripPage() {
     }
 
     return (
-        <Container>
-            <h2>Create your Trip</h2>
-            <Form>
-                <WizardSteps />
-            </Form>
-            <Button onClick={onClick}>Submit</Button>
-            <Button variant="secondary" onClick={onCancel}>Cancel</Button>
-        </Container>
-
+        isAuthenticated && (
+            <Container>
+                <h2>Create your Trip</h2>
+                <Form>
+                    <WizardSteps />
+                </Form>
+                <Button onClick={onClick}>Submit</Button>
+                <Button variant="secondary" onClick={onCancel}>Cancel</Button>
+            </Container>
+        )
     )
 }
 

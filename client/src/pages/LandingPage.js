@@ -1,12 +1,19 @@
-import React, { useState } from "react";
-import { Button, Col, Container, Modal, Row } from "react-bootstrap";
+import { useAuth0 } from "@auth0/auth0-react";
+import React from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
 function LandingPage() {
 
-    const [show, setShow] = useState(false);
+    const { loginWithRedirect, isAuthenticated } = useAuth0();
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    function ButtonChoice() {
+        if (isAuthenticated) {
+            return <Button variant="primary" href="/home">Home</Button>
+            
+        } else {
+            return <Button onClick={loginWithRedirect}>Get Started</Button>
+        }
+    }
 
     return (
         <Container>
@@ -21,21 +28,7 @@ function LandingPage() {
                     <h7>This app allows you to gather, plan, and finally execute your long-talked-about trip or event. </h7>
                 </Col>
             </Row>
-            <Button onClick={handleShow}>Get Started</Button>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>WTPA</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Which of the following would you like to do?:</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
-                        Find a trip
-                    </Button>
-                    <Button variant="primary" href="/newTrip" onClick={handleClose}>
-                        Start a trip
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <ButtonChoice />
         </Container>
 
     )
