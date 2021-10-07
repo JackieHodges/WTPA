@@ -8,4 +8,7 @@ export default {
   getAllTrips: function() {
     return axios.get("/api/trips/");
   },
+  addAssociation: function(tripData) {
+    return axios.post("/api/user/", tripData);
+  },
 };

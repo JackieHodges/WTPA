@@ -13,7 +13,7 @@ function NewTripPage() {
             API.createTrip({
                 trip_name: tripName
             })
-                .then(res => console.log(res.data))
+                .then(res => addAssociation(res.data.id))
                 .then(setStepNumber(2))
                 // let tripName = document.getElementById("tripName").value
                 // let groupMembers = document.getElementById("membersArray").value
@@ -22,6 +22,16 @@ function NewTripPage() {
         } else if (stepNumber === 2) {
             setStepNumber(3)
         }
+    }
+
+    function addAssociation(tripId){
+        console.log(`this is the trip id ${tripId}`)
+        API.addAssociation({
+            trip_id: tripId,
+            user_id: 1
+        })
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err))
     }
 
     function onCancel() {
