@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 function NewTripPage() {
 
     const [stepNumber, setStepNumber] = useState(1)
-    const { isAuthenticated } = useAuth0();
+    const { isAuthenticated, user } = useAuth0();
 
 
     function onClick(event) {
@@ -27,11 +27,11 @@ function NewTripPage() {
         }
     }
 
-    function addAssociation(tripId) {
-        console.log(`this is the trip id ${tripId}`)
+    function addAssociation(trip_id) {
+        console.log(`this is the trip id ${trip_id}`)
         API.addAssociation({
-            trip_id: tripId,
-            user_id: 1
+            tripId: trip_id,
+            userId: user.id
         })
             .then(res => console.log(res.data))
             .catch(err => console.log(err))

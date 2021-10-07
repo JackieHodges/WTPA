@@ -15,16 +15,16 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    // email: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   unique: true,
-    // },
-    // auth_o_id: {
-    //   type: DataTypes.STRING,
-    //   allowNull: true,
-    //   unique: true
-    // }
+    email: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true,
+    },
+    auth_o_id: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true
+    }
   },
   {
     sequelize,

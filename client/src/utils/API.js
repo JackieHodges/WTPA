@@ -11,4 +11,7 @@ export default {
   addAssociation: function(tripData) {
     return axios.post("/api/user/", tripData);
   },
+  findOrCreateUser: function(userData) {
+    return axios.post("/api/user/find/", userData)
+  }
 };

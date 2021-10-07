@@ -11,7 +11,7 @@ Traveller.init(
             primaryKey: true,
             autoIncrement: true
         },
-        user_id: {
+        userId: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',
@@ -19,7 +19,7 @@ Traveller.init(
                 unique: true
             }
         },
-        trip_id: {
+        tripId: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'trip',
