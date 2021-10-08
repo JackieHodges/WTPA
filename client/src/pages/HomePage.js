@@ -10,18 +10,7 @@ function HomePage() {
     const { user, isAuthenticated } = useAuth0();
     const { currentUser, setCurrentUser } = useContext(UserContext);
 
-    useEffect(() => {
-        if (user) {
-            API.findOrCreateUser({
-                name: user.name,
-                auth_o_id: user.sub,
-                email: user.email
-            })
-                .then(res => setCurrentUser(res.data[0]))
-                .catch(err => console.log(err));
-        }
-    }, [])
-
+    console.log(`this is the currentUser ${currentUser.name}`)
 
     return (
         isAuthenticated && (
@@ -39,7 +28,7 @@ function HomePage() {
                     Start a trip
                 </Button>
             </Container>
-        )
+        )     
     )
 }
 

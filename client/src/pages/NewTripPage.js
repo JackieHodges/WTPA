@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import API from "../utils/API";
 import { useAuth0 } from "@auth0/auth0-react";
+import { UserContext } from "../utils/UserContext";
 
 function NewTripPage() {
 
     const [stepNumber, setStepNumber] = useState(1)
     const { isAuthenticated, user } = useAuth0();
+    const { currentUser, setCurrentUser } = useContext(UserContext);
 
 
     function onClick(event) {
@@ -16,7 +18,8 @@ function NewTripPage() {
             API.createTrip({
                 trip_name: tripName
             })
-                .then(res => addAssociation(res.data.id))
+                .then(res => addAssociation(res.data.id, currentUser.id))
+                .then(console.log(currentUser))
                 .then(setStepNumber(2))
                 // let tripName = document.getElementById("tripName").value
                 // let groupMembers = document.getElementById("membersArray").value
@@ -27,11 +30,11 @@ function NewTripPage() {
         }
     }
 
-    function addAssociation(trip_id) {
+    function addAssociation(trip_id, usersId) {
         console.log(`this is the trip id ${trip_id}`)
         API.addAssociation({
             tripId: trip_id,
-            userId: user.id
+            userId: usersId
         })
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
