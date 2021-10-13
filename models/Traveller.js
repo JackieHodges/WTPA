@@ -16,7 +16,7 @@ Traveller.init(
             references: {
                 model: 'user',
                 key: 'id',
-                unique: true
+                unique: false
             }
         },
         tripId: {
@@ -24,7 +24,7 @@ Traveller.init(
             references: {
                 model: 'trip',
                 key: 'id',
-                unique: true
+                unique: false
             }
         }
     },

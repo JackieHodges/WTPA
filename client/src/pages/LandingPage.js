@@ -10,30 +10,24 @@ function LandingPage() {
     const { loginWithRedirect, isAuthenticated, user } = useAuth0();
     const { currentUser, setCurrentUser } = useContext(UserContext);
 
-
     useEffect(() => {
         if (user) {
-            API.findOrCreateUser({
-                name: user.name,
-                auth_o_id: user.sub,
-                email: user.email
-            })
-                .then(res => setCurrentUser(res.data[0]))
-                .then(console.log(`this is the current user ${currentUser.user_name}`))
-                .catch(err => console.log(err));
+            saveUser();
         }
     }, [user])
 
-    console.log(currentUser)
-
-    function setUser(data) {
-        setCurrentUser({
-            id: data.id,
-            user_name: data.name,
-            email: data.email,
-            auth_o_id: data.sub
+    function saveUser() {
+        API.findOrCreateUser({
+            name: user.name,
+            auth_o_id: user.sub,
+            email: user.email
         })
+            .then(res => setCurrentUser(res.data[0]))
+            .then(`the user has been saved`)
+            .catch(err => console.log(err))
     }
+
+    console.log(`this is the current user on landing page ${currentUser}`)
 
     function ButtonChoice() {
         if (isAuthenticated) {
