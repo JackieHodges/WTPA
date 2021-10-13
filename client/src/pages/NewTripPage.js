@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import API from "../utils/API";
 import { useAuth0 } from "@auth0/auth0-react";

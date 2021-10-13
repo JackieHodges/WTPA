@@ -13,11 +13,9 @@ module.exports = {
   addAssociation: function (req, res) {
     db.Traveller
       .create({
-        trip_id: req.body.tripId,
-        user_id: req.body.userId
-        // req.body
-      }
-      )
+        tripId: req.body.tripId,
+        userId: req.body.userId
+      })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
