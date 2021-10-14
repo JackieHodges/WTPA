@@ -8,10 +8,16 @@ export default {
   getAllTrips: function() {
     return axios.get("/api/trips/");
   },
+  getMyTrips: function(id) {
+    return axios.get("/api/user/" + id);
+  },
   addAssociation: function(tripData) {
     return axios.post("/api/user/", tripData);
   },
   findOrCreateUser: function(userData) {
     return axios.post("/api/user/find/", userData)
+  },
+  findOrCreateFriend: function(userData) {
+    return axios.post("/api/user/friend/", userData)
   }
 };

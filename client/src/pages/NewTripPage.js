@@ -3,12 +3,16 @@ import { Container, Form, Button } from "react-bootstrap";
 import API from "../utils/API";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../utils/UserContext";
+import { Link } from "react-router-dom";
 
 function NewTripPage() {
 
     const [stepNumber, setStepNumber] = useState(1);
     const { isAuthenticated, user } = useAuth0();
     const { currentUser, setCurrentUser } = useContext(UserContext);
+    const [selectedTrip, setSelectedTrip] = useState({});
+
+console.log(`this is the selected Trip id global ${selectedTrip.id}`)
 
     function onClick(event) {
         event.preventDefault()
@@ -21,17 +25,31 @@ function NewTripPage() {
                 .then(setStepNumber(2))
                 .catch(err => console.log(err));
         } else if (stepNumber === 2) {
-            // let groupMembers = document.getElementById("friendsEmails").value
-            // let groupMembersArray = groupMembers.split(", ");
-            // groupMembersArray.forEach(email => {
-
-            // })
-            // setStepNumber(3)
+            let groupMembers = document.getElementById("friendsEmails").value
+            let groupMembersArray = groupMembers.split(", ");
+            groupMembersArray.forEach(enteredEmail => {
+                API.findOrCreateFriend({
+                    email: enteredEmail
+                })
+                    .then(res => addFriendAssociation(selectedTrip.id, res.data[0].id))
+                    .then(alert(`${enteredEmail} added`))
+            })
+            setStepNumber(3)
         }
     }
 
     function addAssociation(tripNumber, userId) {
-        console.log(`this is the trip id ${tripNumber}`)
+        console.log(`this is the trip id in initial association${tripNumber}`)
+        API.addAssociation({
+            tripId: tripNumber,
+            userId: userId
+        })
+            .then(res => setSelectedTrip(res.data))
+            .catch(err => console.log(err))
+    }
+
+    function addFriendAssociation(tripNumber, userId) {
+        console.log(`this is the trip id in friend association${tripNumber}`)
         API.addAssociation({
             tripId: tripNumber,
             userId: userId

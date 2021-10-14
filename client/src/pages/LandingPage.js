@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
@@ -9,10 +9,11 @@ function LandingPage() {
 
     const { loginWithRedirect, isAuthenticated, user } = useAuth0();
     const { currentUser, setCurrentUser } = useContext(UserContext);
+    const [myTrips, setMyTrips] = useState([])
 
     useEffect(() => {
         if (user) {
-            saveUser();
+            saveUser()
         }
     }, [user])
 
@@ -23,11 +24,18 @@ function LandingPage() {
             email: user.email
         })
             .then(res => setCurrentUser(res.data[0]))
-            .then(`the user has been saved`)
+            .then(getMyTrips(currentUser.id))
+            .then(`this is the current user ${currentUser}`)
             .catch(err => console.log(err))
     }
 
-    console.log(`this is the current user on landing page ${currentUser}`)
+    function getMyTrips(id) {
+        API.getMyTrips(id)
+            .then(res => setMyTrips(res.data))
+            .catch(err => console.log(err))
+    }
+
+    console.log(myTrips)
 
     function ButtonChoice() {
         if (isAuthenticated) {
@@ -37,6 +45,13 @@ function LandingPage() {
                         <h2>{currentUser.user_name}'s Dashboard</h2>
                         <h5>What would you like to do?</h5>
                     </Col>
+                </Row>
+                <Row>
+                    {myTrips.map(trip =>
+                        <Link className="accordion-title" to={"/myTrips/" + trip.id}>
+                            <Button>{trip.trip.trip_name}</Button>
+                        </Link>
+                    )}
                 </Row>
                 <Button variant="primary">
                     Find a trip
