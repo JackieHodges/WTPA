@@ -31,28 +31,45 @@ function LandingPage() {
 
     function ButtonChoice() {
         if (isAuthenticated) {
-            return <Link variant="primary" to="/home">
-                <Button>Home</Button>
-            </Link>
+            return <Container>
+                <Row>
+                    <Col>
+                        <h2>{currentUser.user_name}'s Dashboard</h2>
+                        <h5>What would you like to do?</h5>
+                    </Col>
+                </Row>
+                <Button variant="primary">
+                    Find a trip
+                </Button>
+                <Link to="/newTrip">
+                    <Button variant="primary">
+                        Start a trip
+                    </Button>
+                </Link>
+            </Container>
 
         } else {
-            return <Button onClick={loginWithRedirect}>Get Started</Button>
+            return (
+                <div>
+                    <Row>
+                        <Col>
+                            <h2>Where's The Party At?</h2>
+                            <h5>In need of a vacation? Having a hard time coordinating with a large group?</h5>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <h7>This app allows you to gather, plan, and finally execute your long-talked-about trip or event. </h7>
+                        </Col>
+                    </Row>
+                    <Button onClick={loginWithRedirect}>Get Started</Button>
+                </div>
+            )
         }
     }
 
     return (
         <Container>
-            <Row>
-                <Col>
-                    <h2>Where's The Party At?</h2>
-                    <h5>In need of a vacation? Having a hard time coordinating with a large group?</h5>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <h7>This app allows you to gather, plan, and finally execute your long-talked-about trip or event. </h7>
-                </Col>
-            </Row>
             <ButtonChoice />
         </Container>
 

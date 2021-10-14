@@ -6,7 +6,6 @@ import "react-bootstrap"
 import NavBar from './components/navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NewTripPage from './pages/NewTripPage';
-import HomePage from './pages/HomePage';
 import { UserContext } from './utils/UserContext';
 
 
@@ -20,7 +19,6 @@ function App() {
           <NavBar />
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/newTrip" component={NewTripPage} />
-          <Route exact path="/home" component={HomePage} />
         </UserContext.Provider>
       </Router>
     </div>
