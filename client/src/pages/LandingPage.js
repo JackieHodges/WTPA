@@ -46,16 +46,11 @@ function LandingPage() {
                         <h5>What would you like to do?</h5>
                     </Col>
                 </Row>
-                <Row>
-                    {myTrips.map(trip =>
-                        <Link className="accordion-title" to={"/myTrips/" + trip.id}>
-                            <Button>{trip.trip.trip_name}</Button>
-                        </Link>
-                    )}
-                </Row>
-                <Button variant="primary">
-                    Find a trip
-                </Button>
+                <Link to="/myTrips">
+                    <Button variant="primary">
+                        My Trips
+                    </Button>
+                </Link>
                 <Link to="/newTrip">
                     <Button variant="primary">
                         Start a trip

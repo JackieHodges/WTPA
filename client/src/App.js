@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NewTripPage from './pages/NewTripPage';
 import { UserContext } from './utils/UserContext';
 import SpecificTripPage from './pages/SpecificTripPage';
+import MyTripsPage from './pages/MyTripsPage';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <NavBar />
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/newTrip" component={NewTripPage} />
+          <Route exact path="/myTrips/" component={MyTripsPage} />
           <Route path="/myTrips/:id" component={SpecificTripPage} />
         </UserContext.Provider>
       </Router>
