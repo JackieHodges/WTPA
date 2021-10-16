@@ -51,11 +51,6 @@ function LandingPage() {
                         My Trips
                     </Button>
                 </Link>
-                <Link to="/newTrip">
-                    <Button variant="primary">
-                        Start a trip
-                    </Button>
-                </Link>
             </Container>
 
         } else {

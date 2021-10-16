@@ -15,11 +15,7 @@ module.exports = {
       .create({
         tripId: req.body.tripId,
         userId: req.body.userId
-      }, {
-      include: {
-        model: db.Trip
-      }
-    })
+      })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -32,8 +28,8 @@ module.exports = {
   getMyTrips: function (req, res) {
     db.Traveller
       .findAll({
-        where: { 
-          userId: req.params.id 
+        where: {
+          userId: req.params.id
         },
         include: {
           model: db.Trip
