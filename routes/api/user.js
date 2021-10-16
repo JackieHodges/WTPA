@@ -1,7 +1,7 @@
 const tripsController = require('../../controllers/tripsController');
 const router = require('express').Router();
 
-router.route("/")
+router.route("/associate")
   .post(tripsController.addAssociation)
 
 router.route("/:id")

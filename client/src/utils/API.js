@@ -12,7 +12,7 @@ export default {
     return axios.get("/api/user/" + id);
   },
   addAssociation: function(tripData) {
-    return axios.post("/api/user/", tripData);
+    return axios.post("/api/user/associate/", tripData);
   },
   findOrCreateUser: function(userData) {
     return axios.post("/api/user/find/", userData)

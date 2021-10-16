@@ -15,16 +15,16 @@ function SpecificTripPage() {
             API.findOrCreateFriend({
                 email: enteredEmail
             })
-                .then(res => addAssociation(res.data[0].id))
+                .then(res => associateTrip(res.data[0]))
                 .then(alert(`${enteredEmail} added`))
         })
     }
 
-    function addAssociation(userId) {
-        console.log(`this is the trip id in initial association${id}`)
+    function associateTrip(enteredData) {
+        console.log(enteredData.id)
         API.addAssociation({
             tripId: id,
-            userId: userId
+            userId: enteredData.id
         })
             .catch(err => console.log(err))
     }
