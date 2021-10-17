@@ -50,17 +50,38 @@ function SpecificTripPage() {
             voteData: data,
             id: id
         })
-        .then(res => getThisTrip())
-        .catch(err => console.log(err))
+            .then(res => getThisTrip())
+            .catch(err => console.log(err))
     }
 
-    function onUpvote(data, diff) {
+    function onVote(data, diff) {
         API.setVote({
             voteData: data,
             id: id
         })
-        .then(res => getThisTrip())
-        .catch(err => console.log(err))
+            .then(res => getThisTrip())
+            .catch(err => console.log(err))
+    }
+
+    function onDelete() {
+        API.setVote({
+            voteData: "",
+            id: id
+        })
+            .then(res => getThisTrip())
+            .catch(err => console.log(err))
+    }
+
+    function FriendsList() {
+        if (thisTripData.users) {
+            return thisTripData.users.map(friend =>
+                <div key={friend.id}>
+                    {friend.email}
+                </div>
+            )
+        } else {
+            return <p>No Friends Added</p>
+        }
     }
 
     console.log(thisTripData)
@@ -71,11 +92,7 @@ function SpecificTripPage() {
             <Row>
                 <Col>
                     <h2>Invited Friends:</h2>
-                    {/* {thisTripData.users.map(friend =>
-                        <div key={friend.id}>
-                            {friend.email}
-                        </div> */}
-                    {/* )} */}
+                    <FriendsList />
                     <h2>Invite More Friends:</h2>
                     <Form>
                         <Form.Group className="mb-3" controlId="friendsEmails">
@@ -86,10 +103,11 @@ function SpecificTripPage() {
                     </Form>
                 </Col>
                 <Col>
-                    <ReactVote onCreate={onCreate} onUpvote={onUpvote} onClose={onUpvote} onReset={onUpvote} isAdmin={true} clientId={currentUser.email} data={thisTripData.voteData}/>
+                    <ReactVote onCreate={onCreate} onUpvote={onVote} onClose={onVote} onExpand={onVote} onDownvote={onVote} onReset={onVote} isAdmin={true} clientId={currentUser.email} data={thisTripData.voteData} />
+                    <Button onClick={onDelete}>Delete Vote Data</Button>
                 </Col>
                 <Col>
-                Comments
+                    Comments
                 </Col>
             </Row>
         </Container>
