@@ -8,6 +8,9 @@ export default {
   getAllTrips: function() {
     return axios.get("/api/trips/");
   },
+  getThisTrip: function(id) {
+    return axios.get("/api/trips/" + id);
+  },
   getMyTrips: function(id) {
     return axios.get("/api/user/" + id);
   },

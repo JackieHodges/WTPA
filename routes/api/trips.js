@@ -5,5 +5,7 @@ router.route("/")
   .get(tripsController.getAllTrips)
   .post(tripsController.createTrip)
 
+router.route("/:id")
+  .get(tripsController.getThisTrip)
 
 module.exports = router;

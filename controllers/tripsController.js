@@ -25,6 +25,19 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  getThisTrip: function (req, res) {
+    db.Trip
+      .findAll({
+        where: {
+          id: req.params.id
+        },
+        include: {
+          model: db.User
+        }
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   getMyTrips: function (req, res) {
     db.Traveller
       .findAll({
