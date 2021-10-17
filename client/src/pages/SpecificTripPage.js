@@ -21,9 +21,9 @@ function SpecificTripPage() {
     }
 
     function associateTrip(enteredData) {
-        console.log(enteredData.id)
+        console.log(`this is me making sure the ${parseInt(id)} and ${enteredData.id}`)
         API.addAssociation({
-            tripId: id,
+            tripId: parseInt(id),
             userId: enteredData.id
         })
             .catch(err => console.log(err))
