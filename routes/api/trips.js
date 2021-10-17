@@ -8,4 +8,7 @@ router.route("/")
 router.route("/:id")
   .get(tripsController.getThisTrip)
 
+router.route("/vote")
+  .put(tripsController.setVote)
+
 module.exports = router;

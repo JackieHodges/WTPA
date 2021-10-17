@@ -22,5 +22,8 @@ export default {
   },
   findOrCreateFriend: function(userData) {
     return axios.post("/api/user/friend/", userData)
+  },
+  setVote: function(voteData) {
+    return axios.put("/api/trips/vote/", voteData)
   }
 };

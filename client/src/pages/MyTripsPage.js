@@ -34,7 +34,8 @@ function MyTripsPage() {
         console.log(`this is the trip id in initial association${tripNumber}`)
         API.addAssociation({
             tripId: tripNumber,
-            userId: currentUser.id
+            userId: currentUser.id,
+            isAdmin: true
         })
             .then(res => getMyTrips())
             .catch(err => console.log(err))

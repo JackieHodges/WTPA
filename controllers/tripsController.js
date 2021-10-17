@@ -31,7 +31,7 @@ module.exports = {
         where: {
           id: req.params.id
         },
-        include:{
+        include: {
           model: db.User
         }
       })
@@ -70,6 +70,18 @@ module.exports = {
         defaults: {
           auth_o_id: null,
           user_name: null
+        }
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  setVote: function (req, res) {
+    db.Trip
+      .update({ 
+        voteData: req.body.voteData
+       }, {
+        where: { 
+          id: req.body.id 
         }
       })
       .then(dbModel => res.json(dbModel))

@@ -15,6 +15,10 @@ Trip.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        voteData:{
+            type: DataTypes.JSON,
+            allowNull: true
+        },
     },
     {
         sequelize,

@@ -26,7 +26,11 @@ Traveller.init(
                 key: 'id',
                 unique: false
             }
-        }
+        },
+        isAdmin: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
     },
     {
         sequelize,
