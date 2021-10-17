@@ -14,8 +14,9 @@ function SpecificTripPage() {
     }, [])
 
     function getThisTrip() {
+        document.getElementById("friendsEmails").value = "";
         API.getThisTrip(id)
-            .then(res => setThisTripFriends(res.data[0].users))
+            .then(res => setThisTripFriends(res.data.users))
             .catch(err => console.log(err))
     }
 
@@ -38,6 +39,7 @@ function SpecificTripPage() {
             tripId: parseInt(id),
             userId: enteredData.id
         })
+            .then(res => getThisTrip())
             .catch(err => console.log(err))
     }
 
@@ -45,7 +47,7 @@ function SpecificTripPage() {
         <Container>
             <h2>Invited Friends:</h2>
             {thisTripFriends.map(friend =>
-                <div>
+                <div key={friend.id}>
                     {friend.email}
                 </div>
             )}

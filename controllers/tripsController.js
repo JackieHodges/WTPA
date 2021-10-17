@@ -27,11 +27,11 @@ module.exports = {
   },
   getThisTrip: function (req, res) {
     db.Trip
-      .findAll({
+      .findOne({
         where: {
           id: req.params.id
         },
-        include: {
+        include:{
           model: db.User
         }
       })

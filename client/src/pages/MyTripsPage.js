@@ -44,8 +44,8 @@ function MyTripsPage() {
         <Container>
             <h2>{currentUser.user_name}'s Trips</h2>
             {myTrips.map(trip =>
-                <Row key={trip.id}>
-                    <Link className="accordion-title" to={"/myTrips/" + trip.id}>
+                <Row key={trip.trip.id}>
+                    <Link className="accordion-title" to={"/myTrips/" + trip.trip.id}>
                         <Button>{trip.trip.trip_name}</Button>
                     </Link>
                 </Row>
