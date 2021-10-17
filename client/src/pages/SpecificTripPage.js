@@ -9,6 +9,7 @@ function SpecificTripPage() {
 
     const { id } = useParams();
     const [thisTripData, setThisTripData] = useState({})
+    const [Admin, setAdmin] = useState(false)
     const { currentUser } = useContext(UserContext);
 
     useEffect(() => {
@@ -23,14 +24,14 @@ function SpecificTripPage() {
     }
 
     function onClick() {
-        let groupMembers = document.getElementById("friendsEmails").value
+        let groupMembers = document.getElementById("friendsEmails").value.trim()
         let groupMembersArray = groupMembers.split(", ");
         groupMembersArray.forEach(enteredEmail => {
             API.findOrCreateFriend({
                 email: enteredEmail
             })
                 .then(res => associateTrip(res.data[0]))
-                .then(alert(`${enteredEmail} added`))
+                // .then(alert(`${enteredEmail} added`))
                 .catch(err => console.log(err))
         })
     }
@@ -84,11 +85,26 @@ function SpecificTripPage() {
         }
     }
 
+    function IsAdmin() {
+        if (thisTripData.users) {
+            if (thisTripData.users[0].traveller.email === currentUser.email){
+                setAdmin(true)
+                return <p>You are the admin of this trip</p>
+            } else {
+                setAdmin(false)
+                return null
+            }
+        } else {
+            return <p>Error</p>
+        }
+    }
+
     console.log(thisTripData)
 
     return (
         <Container>
             <h1>{thisTripData.trip_name}</h1>
+            <IsAdmin />
             <Row>
                 <Col>
                     <h2>Invited Friends:</h2>
@@ -103,7 +119,7 @@ function SpecificTripPage() {
                     </Form>
                 </Col>
                 <Col>
-                    <ReactVote onCreate={onCreate} onUpvote={onVote} onClose={onVote} onExpand={onVote} onDownvote={onVote} onReset={onVote} isAdmin={true} clientId={currentUser.email} data={thisTripData.voteData} />
+                    <ReactVote onCreate={onCreate} onUpvote={onVote} onClose={onVote} onExpand={onVote} onDownvote={onVote} onReset={onVote} isAdmin={Admin} clientId={currentUser.email} data={thisTripData.voteData} />
                     <Button onClick={onDelete}>Delete Vote Data</Button>
                 </Col>
                 <Col>
