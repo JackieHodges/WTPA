@@ -35,8 +35,6 @@ function LandingPage() {
             .catch(err => console.log(err))
     }
 
-    console.log(myTrips)
-
     function ButtonChoice() {
         if (isAuthenticated) {
             return <Container>

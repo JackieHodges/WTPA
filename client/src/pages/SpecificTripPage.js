@@ -20,6 +20,7 @@ function SpecificTripPage() {
         document.getElementById("friendsEmails").value = "";
         API.getThisTrip(id)
             .then(res => setThisTripData(res.data))
+            .then(isAdmin())
             .catch(err => console.log(err))
     }
 
@@ -85,26 +86,30 @@ function SpecificTripPage() {
         }
     }
 
-    function IsAdmin() {
-        if (thisTripData.users) {
-            if (thisTripData.users[0].traveller.email === currentUser.email){
-                setAdmin(true)
-                return <p>You are the admin of this trip</p>
-            } else {
-                setAdmin(false)
-                return null
-            }
+    function ShowButton() {
+        if (currentUser.isAdmin) {
+            return <Button onClick={onDelete}>Delete Vote Data</Button>
         } else {
-            return <p>Error</p>
+            return null
         }
     }
 
-    console.log(thisTripData)
+    function isAdmin(){
+        console.log(currentUser)
+        API.isAdmin({
+            userId: currentUser.id,
+            tripId: id
+        })
+        .then(res => setAdmin(res.data.is_admin))
+        .catch(err => console.log(err))
+
+    }
+
+    console.log(`this is tripdata ${Admin}`)
 
     return (
         <Container>
             <h1>{thisTripData.trip_name}</h1>
-            <IsAdmin />
             <Row>
                 <Col>
                     <h2>Invited Friends:</h2>
@@ -120,7 +125,7 @@ function SpecificTripPage() {
                 </Col>
                 <Col>
                     <ReactVote onCreate={onCreate} onUpvote={onVote} onClose={onVote} onExpand={onVote} onDownvote={onVote} onReset={onVote} isAdmin={Admin} clientId={currentUser.email} data={thisTripData.voteData} />
-                    <Button onClick={onDelete}>Delete Vote Data</Button>
+                    <ShowButton />
                 </Col>
                 <Col>
                     Comments

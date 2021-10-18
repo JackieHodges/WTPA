@@ -27,7 +27,7 @@ Traveller.init(
                 unique: false
             }
         },
-        isAdmin: {
+        is_admin: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },

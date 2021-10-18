@@ -51,6 +51,17 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  isAdmin: function (req, res) {
+    db.Traveller
+      .findOne({
+        where: {
+          userId: req.body.userId,
+          tripId: req.body.tripId
+        }
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   findOrCreateUser: function (req, res) {
     db.User
       .findOrCreate({

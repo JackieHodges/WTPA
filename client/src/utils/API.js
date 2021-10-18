@@ -25,5 +25,8 @@ export default {
   },
   setVote: function(voteData) {
     return axios.put("/api/trips/vote/", voteData)
+  },
+  isAdmin: function(userData){
+    return axios.post("/api/user/admin/", userData)
   }
 };

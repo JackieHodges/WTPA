@@ -13,4 +13,7 @@ router.route("/find")
 router.route("/friend")
   .post(tripsController.findOrCreateFriend)
 
+router.route("/admin")
+  .post(tripsController.isAdmin)
+
 module.exports = router;

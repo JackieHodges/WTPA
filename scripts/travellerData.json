@@ -1,15 +1,18 @@
 [
     {
         "tripId": 1,
-        "userId": 1
+        "userId": 1,
+        "is_admin": false
+
     },
     {
         "tripId": 1,
-        "userId": 2
+        "userId": 2,
+        "is_admin": true
     },
     {
         "tripId": 2,
         "userId": 1,
-        "isAdmin": true
+        "is_admin": true
     }
 ]
