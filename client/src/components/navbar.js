@@ -9,7 +9,7 @@ function NavBar() {
     return (
         <Navbar bg="light">
             <Container>
-                <Link to="/myTrips">
+                <Link to="/">
                     <Navbar.Brand>WTPA</Navbar.Brand>
                 </Link>
                 <LoginButton />

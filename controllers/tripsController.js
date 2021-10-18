@@ -14,7 +14,8 @@ module.exports = {
     db.Traveller
       .create({
         tripId: req.body.tripId,
-        userId: req.body.userId
+        userId: req.body.userId,
+        is_admin: req.body.is_admin
       })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
