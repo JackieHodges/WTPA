@@ -101,21 +101,21 @@ function SpecificTripPage() {
     }
 
     function ShowButton() {
-        if (Admin  === true) {
-            return <Button onClick={onDelete}>Delete Vote Data</Button>
+        if (Admin === true) {
+            return <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={onDelete}>Delete Vote Data</Button>
         } else {
             return null
         }
     }
 
-    function isAdmin(){
+    function isAdmin() {
         console.log(currentUser)
         API.isAdmin({
             tripId: id,
             userId: currentUser.id
         })
-        .then(res => setAdmin(res.data.is_admin))
-        .catch(err => console.log(err))
+            .then(res => setAdmin(res.data.is_admin))
+            .catch(err => console.log(err))
 
     }
 
@@ -123,26 +123,33 @@ function SpecificTripPage() {
 
     return (
         <Container>
-            <h1>{thisTripData.trip_name}</h1>
+            <Row>
+                <Col>
+                    <h1>{thisTripData.trip_name}</h1>
+                </Col>
+            </Row>
             <Row>
                 <Col>
                     <h2>Invited Friends:</h2>
                     <FriendsList />
-                    <h2>Invite More Friends:</h2>
+                    <h3>Invite More Friends:</h3>
                     <Form>
                         <Form.Group className="mb-3" controlId="friendsEmails">
                             <Form.Label>Add Friend's Emails Here</Form.Label>
                             <Form.Control as="textarea" rows={3} placeholder="Please seperate emails using a comma. You can always add more later." />
                         </Form.Group>
-                        <Button onClick={onClick}>Add Friend(s)</Button>
+                        <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={onClick}>Add Friend(s)</Button>
                     </Form>
                 </Col>
                 <Col>
+                    <h2>Vote Here</h2>
                     <ReactVote onCreate={onCreate} onUpvote={onVote} onClose={onVote} onExpand={onVote} onDownvote={onVote} onReset={onVote} isAdmin={Admin} clientId={currentUser.email} data={thisTripData.voteData} />
                     <ShowButton />
                 </Col>
+            </Row>
+            <Row>
                 <Col>
-                    Comments
+                    <h2>Comments</h2>
                 </Col>
             </Row>
         </Container>

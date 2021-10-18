@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  background-image: url('./images/orfeas-green-G5A5ZNjS2tE-unsplash.jpg');
+  /* background-color: rgb(75, 75, 75); */
+  background-position: 'center';
+  background-size:cover;
+  /* background-repeat: 'no-repeat'; */
+  /* width: '100vw';
+  height: '100vh';  */
 }
 
 .App-logo {
@@ -7,32 +14,38 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  padding-bottom: 2%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1, h2, h3, h4, h5, h6 {
+  background-color: rgba(231,230,226, 0.6);
 }
 
-.App-link {
-  color: #61dafb;
+
+.row {
+  background-color: rgb(147,134,121, 0.8);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container {
+  padding-top: 11%;
+  padding-bottom: 11%;
 }
+
+.btn-primary {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  background-color: rgb(76,108,116);
+}
+
+.col {
+  padding-top: 2%;
+}
+
+form {
+  padding: 0 15% 0 15%;
+
+}
+
+
+

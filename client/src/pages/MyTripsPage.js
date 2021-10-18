@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button,Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { UserContext } from "../utils/UserContext";
@@ -43,23 +43,27 @@ function MyTripsPage() {
 
     return (
         <Container>
-            <h2>{currentUser.user_name}'s Trips</h2>
-            {myTrips.map(trip =>
-                <Row key={trip.trip.id}>
-                    <Link className="accordion-title" to={"/myTrips/" + trip.trip.id}>
-                        <Button>{trip.trip.trip_name}</Button>
-                    </Link>
-                </Row>
-            )}
             <Row>
-            <h3>Add A New Trip Here</h3>
-                <Form>
-                    <Form.Group className="mb-3" controlId="tripName">
-                        <Form.Label>Name Your Trip</Form.Label>
-                        <Form.Control type="text" placeholder="Trip Name Here" />
-                    </Form.Group>
-                    <Button onClick={onClick}>Submit</Button>
-                </Form>
+                <Col style={{padding: "2%"}}>
+                <h2>{currentUser.user_name}'s Trips</h2>
+                    {myTrips.map(trip =>
+                        <Row key={trip.trip.id}>
+                            <Link className="accordion-title" to={"/myTrips/" + trip.trip.id}>
+                                <Button style={{ backgroundColor: "rgb(76,108,116)" }}>{trip.trip.trip_name}</Button>
+                            </Link>
+                        </Row>
+                    )}
+                </Col>
+                <Col style={{padding: "2%"}}>
+                    <h3>Add A New Trip Here</h3>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="tripName">
+                            <Form.Label>Name Your Trip</Form.Label>
+                            <Form.Control type="text" placeholder="Trip Name Here" />
+                        </Form.Group>
+                        <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={onClick}>Submit</Button>
+                    </Form>
+                </Col>
             </Row>
         </Container>
     )

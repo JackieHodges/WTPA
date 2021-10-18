@@ -42,18 +42,18 @@ function LandingPage() {
                     <Col>
                         <h2>{currentUser.user_name}'s Dashboard</h2>
                         <h5>What would you like to do?</h5>
+                        <Link to="/myTrips">
+                            <Button style={{ backgroundColor: "rgb(76,108,116)" }} variant="primary">
+                                My Trips
+                            </Button>
+                        </Link>
                     </Col>
                 </Row>
-                <Link to="/myTrips">
-                    <Button variant="primary">
-                        My Trips
-                    </Button>
-                </Link>
             </Container>
 
         } else {
             return (
-                <div>
+                <Container>
                     <Row>
                         <Col>
                             <h2>Where's The Party At?</h2>
@@ -65,8 +65,12 @@ function LandingPage() {
                             <h7>This app allows you to gather, plan, and finally execute your long-talked-about trip or event. </h7>
                         </Col>
                     </Row>
-                    <Button onClick={loginWithRedirect}>Get Started</Button>
-                </div>
+                    <Row>
+                        <Col>
+                            <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={loginWithRedirect}>Get Started</Button>
+                        </Col>
+                    </Row>
+                </Container>
             )
         }
     }

@@ -8,13 +8,13 @@ function NavBar() {
 
     return (
         <Navbar bg="light">
-            <Container>
+            <container>
                 <Link to="/">
                     <Navbar.Brand>WTPA</Navbar.Brand>
                 </Link>
                 <LoginButton />
                 <LogoutButton />
-            </Container>
+            </container>
         </Navbar>
     )
 
