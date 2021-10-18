@@ -1,3 +1,7 @@
+* {
+  font-family:Arial, Helvetica, sans-serif;
+}
+
 .App {
   text-align: center;
   background-image: url('./images/orfeas-green-G5A5ZNjS2tE-unsplash.jpg');
@@ -14,14 +18,14 @@
   pointer-events: none;
 }
 
-h1 {
-  padding-bottom: 2%;
-}
-
 h1, h2, h3, h4, h5, h6 {
   background-color: rgba(231,230,226, 0.6);
+  padding: 1%
 }
 
+p {
+  font-weight: bolder;
+}
 
 .row {
   background-color: rgb(147,134,121, 0.8);

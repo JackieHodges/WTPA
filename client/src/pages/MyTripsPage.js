@@ -55,7 +55,7 @@ function MyTripsPage() {
                     )}
                 </Col>
                 <Col style={{padding: "2%"}}>
-                    <h3>Add A New Trip Here</h3>
+                    <h2>Add A New Trip Here</h2>
                     <Form>
                         <Form.Group className="mb-3" controlId="tripName">
                             <Form.Label>Name Your Trip</Form.Label>

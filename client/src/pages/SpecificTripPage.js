@@ -90,10 +90,10 @@ function SpecificTripPage() {
     function FriendsList() {
         if (thisTripData.users) {
             return thisTripData.users.map(friend =>
-                <div key={friend.id} >
+                <p key={friend.id} >
                     {friend.email}
                     {/* <Button onClick={deleteFriend} id={friend.id}>X</Button> */}
-                </div>
+                </p>
             )
         } else {
             return <p>No Friends Added</p>
@@ -117,6 +117,10 @@ function SpecificTripPage() {
             .then(res => setAdmin(res.data.is_admin))
             .catch(err => console.log(err))
 
+    }
+
+    function onComment(){
+        alert(`new comment added`)
     }
 
     console.log(`this is tripdata ${Admin}`)
@@ -150,6 +154,12 @@ function SpecificTripPage() {
             <Row>
                 <Col>
                     <h2>Comments</h2>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="newComment">
+                            <Form.Control type="text" placeholder="Add comment here" />
+                            <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={onComment}>Add Comment</Button>
+                        </Form.Group>
+                    </Form>
                 </Col>
             </Row>
         </Container>
