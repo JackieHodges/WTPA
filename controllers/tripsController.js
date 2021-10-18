@@ -19,6 +19,14 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  deleteFriend: function (req, res) {
+    db.Traveller
+      .destroy({
+        where: req.body
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   getAllTrips: function (req, res) {
     db.Trip
       .findAll()
@@ -88,11 +96,11 @@ module.exports = {
   },
   setVote: function (req, res) {
     db.Trip
-      .update({ 
+      .update({
         voteData: req.body.voteData
-       }, {
-        where: { 
-          id: req.body.id 
+      }, {
+        where: {
+          id: req.body.id
         }
       })
       .then(dbModel => res.json(dbModel))

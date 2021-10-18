@@ -74,11 +74,24 @@ function SpecificTripPage() {
             .catch(err => console.log(err))
     }
 
+    // function deleteFriend(event){
+    //     event.preventDefault();
+    //     console.log(`this is friend id ${typeof parseInt(event.target.id)} and this is tripId ${typeof parseInt(id)}`)
+    //     API.deleteFriend({
+    //         tripId: parseInt(id),
+    //         userId: parseInt(event.target.id)
+    //     })
+    //     .then(res => console.log(res.data))
+    //     .then(res => getThisTrip())
+    //     .catch(err => console.log(err))
+    // }
+
     function FriendsList() {
         if (thisTripData.users) {
             return thisTripData.users.map(friend =>
-                <div key={friend.id}>
+                <div key={friend.id} >
                     {friend.email}
+                    {/* <Button onClick={deleteFriend} id={friend.id}>X</Button> */}
                 </div>
             )
         } else {
@@ -87,7 +100,7 @@ function SpecificTripPage() {
     }
 
     function ShowButton() {
-        if (currentUser.isAdmin) {
+        if (Admin  === true) {
             return <Button onClick={onDelete}>Delete Vote Data</Button>
         } else {
             return null
@@ -97,8 +110,8 @@ function SpecificTripPage() {
     function isAdmin(){
         console.log(currentUser)
         API.isAdmin({
-            userId: currentUser.id,
-            tripId: id
+            tripId: id,
+            userId: currentUser.id
         })
         .then(res => setAdmin(res.data.is_admin))
         .catch(err => console.log(err))

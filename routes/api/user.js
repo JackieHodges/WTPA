@@ -3,6 +3,7 @@ const router = require('express').Router();
 
 router.route("/associate")
   .post(tripsController.addAssociation)
+  .delete(tripsController.deleteFriend)
 
 router.route("/:id")
   .get(tripsController.getMyTrips)
