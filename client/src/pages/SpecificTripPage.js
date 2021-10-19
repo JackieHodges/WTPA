@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router";
 import API from "../utils/API";
 import ReactVote from 'react-vote';
@@ -19,6 +19,7 @@ function SpecificTripPage() {
 
     function getThisTrip() {
         document.getElementById("friendsEmails").value = "";
+        document.getElementById("newComment").value = "";
         API.getThisTrip(id)
             .then(res => setThisTripData(res.data))
             .then(isAdmin())
@@ -106,15 +107,19 @@ function SpecificTripPage() {
     }
 
     function CommentList() {
-        if (tripsComments) {
-            return tripsComments.map(comment =>
-                <p key={comment.id} >
-                    {comment.text} {comment.createdAt} {comment.user.user_name}
-                    {/* <Button className="btn-x" style={{ backgroundColor: "rgb(76,108,116)" }} onClick={deleteFriend} id={friend.traveller.id}>X</Button> */}
-                </p>
+        if (thisTripData.users) {
+            return (
+                <ListGroup>
+                    {tripsComments.map(comment =>
+                        <ListGroup.Item key={comment.id} style={{ backgroundColor: "rgb(76,108,116, 0.9)", marginBottom: "1%" }}>
+                            {comment.text} -- {comment.user.user_name} at {comment.createdAt} 
+                            {/* <Button className="btn-x" style={{ backgroundColor: "rgb(76,108,116)" }} onClick={deleteFriend} id={friend.traveller.id}>X</Button> */}
+                        </ListGroup.Item>
+                    )}
+                </ListGroup>
             )
         } else {
-            return <p>No Friends Added</p>
+            return <p>No Comments Added Yet.</p>
         }
     }
 
