@@ -14,6 +14,9 @@ export default {
   getTripComments: function(id) {
     return axios.get("/api/comment/" + id);
   },
+  addNewComment: function(commentData) {
+    return axios.post("/api/comment/", commentData);
+  },
   getMyTrips: function(id) {
     return axios.get("/api/user/" + id);
   },

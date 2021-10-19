@@ -26,7 +26,7 @@ function SpecificTripPage() {
             .catch(err => console.log(err))
     }
 
-    function getTripComments(){
+    function getTripComments() {
         API.getTripComments(id)
             .then(res => setTripsComments(res.data.comments))
     }
@@ -82,11 +82,11 @@ function SpecificTripPage() {
             .catch(err => console.log(err))
     }
 
-    function deleteFriend(event){
+    function deleteFriend(event) {
         API.deleteFriend(event.target.id)
-        .then(res => console.log(res.data))
-        .then(res => getThisTrip())
-        .catch(err => console.log(err))
+            .then(res => console.log(res.data))
+            .then(res => getThisTrip())
+            .catch(err => console.log(err))
     }
 
     console.log(thisTripData.users)
@@ -96,7 +96,7 @@ function SpecificTripPage() {
         if (thisTripData.users) {
             return thisTripData.users.map(friend =>
                 <p key={friend.id} >
-                    {friend.email} 
+                    {friend.email}
                     <Button className="btn-x" style={{ backgroundColor: "rgb(76,108,116)" }} onClick={deleteFriend} id={friend.traveller.id}>X</Button>
                 </p>
             )
@@ -137,8 +137,17 @@ function SpecificTripPage() {
 
     }
 
-    function onComment(){
-        alert(`new comment added`)
+    function onComment() {
+        let newComment = document.getElementById("newComment").value.trim()
+        API.addNewComment({
+            tripId: id,
+            userId: currentUser.id,
+            text: newComment
+        })
+            .then(res => getThisTrip())
+            // .then(alert(`${enteredEmail} added`))
+            .catch(err => console.log(err))
+
     }
 
     console.log(`this is tripdata ${Admin}`)

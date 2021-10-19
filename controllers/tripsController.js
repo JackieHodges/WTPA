@@ -78,6 +78,16 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  addNewComment: function (req, res) {
+    db.Comment
+      .create({
+        tripId: req.body.tripId,
+        userId: req.body.userId,
+        text: req.body.text
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   isAdmin: function (req, res) {
     db.Traveller
       .findOne({
