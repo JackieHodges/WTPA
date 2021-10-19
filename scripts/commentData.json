@@ -1,0 +1,17 @@
+[
+    {
+        "text": "this is a test comment",
+        "tripId": 1,
+        "userId": 1
+    },
+    {
+        "text": "this is a test comment",
+        "tripId": 1,
+        "userId": 2
+    },
+    {
+        "text": "plz comment",
+        "tripId": 2,
+        "userId": 1
+    }
+]

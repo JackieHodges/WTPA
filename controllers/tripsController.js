@@ -62,6 +62,22 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  getTripComments: function (req, res) {
+    db.Trip
+      .findOne({
+        where: {
+          id: req.params.id
+        },
+        include: {
+          model: db.Comment,
+          include: {
+            model: db.User
+          }
+        }
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   isAdmin: function (req, res) {
     db.Traveller
       .findOne({

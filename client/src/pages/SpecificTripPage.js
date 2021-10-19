@@ -9,6 +9,7 @@ function SpecificTripPage() {
 
     const { id } = useParams();
     const [thisTripData, setThisTripData] = useState({})
+    const [tripsComments, setTripsComments] = useState([])
     const [Admin, setAdmin] = useState(false)
     const { currentUser } = useContext(UserContext);
 
@@ -21,7 +22,13 @@ function SpecificTripPage() {
         API.getThisTrip(id)
             .then(res => setThisTripData(res.data))
             .then(isAdmin())
+            .then(getTripComments())
             .catch(err => console.log(err))
+    }
+
+    function getTripComments(){
+        API.getTripComments(id)
+            .then(res => setTripsComments(res.data.comments))
     }
 
     function onClick() {
@@ -83,6 +90,7 @@ function SpecificTripPage() {
     }
 
     console.log(thisTripData.users)
+    console.log(tripsComments)
 
     function FriendsList() {
         if (thisTripData.users) {
@@ -90,6 +98,19 @@ function SpecificTripPage() {
                 <p key={friend.id} >
                     {friend.email} 
                     <Button className="btn-x" style={{ backgroundColor: "rgb(76,108,116)" }} onClick={deleteFriend} id={friend.traveller.id}>X</Button>
+                </p>
+            )
+        } else {
+            return <p>No Friends Added</p>
+        }
+    }
+
+    function CommentList() {
+        if (tripsComments) {
+            return tripsComments.map(comment =>
+                <p key={comment.id} >
+                    {comment.text} {comment.createdAt} {comment.user.user_name}
+                    {/* <Button className="btn-x" style={{ backgroundColor: "rgb(76,108,116)" }} onClick={deleteFriend} id={friend.traveller.id}>X</Button> */}
                 </p>
             )
         } else {
@@ -151,6 +172,7 @@ function SpecificTripPage() {
             <Row>
                 <Col>
                     <h2>Comments</h2>
+                    <CommentList />
                     <Form>
                         <Form.Group className="mb-3" controlId="newComment">
                             <Form.Control type="text" placeholder="Add comment here" />

@@ -11,6 +11,9 @@ export default {
   getThisTrip: function(id) {
     return axios.get("/api/trips/" + id);
   },
+  getTripComments: function(id) {
+    return axios.get("/api/comment/" + id);
+  },
   getMyTrips: function(id) {
     return axios.get("/api/user/" + id);
   },
