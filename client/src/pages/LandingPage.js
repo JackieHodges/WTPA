@@ -17,6 +17,7 @@ function LandingPage() {
         }
     }, [user])
 
+    // find or create the user, and set it as the current user 
     function saveUser() {
         API.findOrCreateUser({
             name: user.name,
@@ -35,6 +36,7 @@ function LandingPage() {
             .catch(err => console.log(err))
     }
 
+    // conditional component that changes once the user is authenticated
     function ButtonChoice() {
         if (isAuthenticated) {
             return <Container>

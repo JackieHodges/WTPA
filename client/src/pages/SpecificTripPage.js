@@ -27,11 +27,25 @@ function SpecificTripPage() {
             .catch(err => console.log(err))
     }
 
+    // set if the user is admin for special permissions
+    function isAdmin() {
+        console.log(currentUser)
+        API.isAdmin({
+            tripId: id,
+            userId: currentUser.id
+        })
+            .then(res => setAdmin(res.data.is_admin))
+            .catch(err => console.log(err))
+
+    }
+
+    // load comments that are specific for the trip
     function getTripComments() {
         API.getTripComments(id)
             .then(res => setTripsComments(res.data.comments))
     }
 
+    // adds new users to a trip
     function onClick() {
         let groupMembers = document.getElementById("friendsEmails").value.trim()
         let groupMembersArray = groupMembers.split(", ");
@@ -45,6 +59,20 @@ function SpecificTripPage() {
         })
     }
 
+    // adds a new comment
+    function onComment() {
+        let newComment = document.getElementById("newComment").value.trim()
+        API.addNewComment({
+            tripId: id,
+            userId: currentUser.id,
+            text: newComment
+        })
+            .then(res => getThisTrip())
+            // .then(alert(`${enteredEmail} added`))
+            .catch(err => console.log(err))
+    }
+
+    // creates the join between the trip and user
     function associateTrip(enteredData) {
         console.log(`this is me making sure the ${parseInt(id)} and ${enteredData.id}`)
         API.addAssociation({
@@ -56,6 +84,7 @@ function SpecificTripPage() {
             .catch(err => console.log(err))
     }
 
+    // initialization of the vote component
     function onCreate(data, diff) {
         API.setVote({
             voteData: data,
@@ -65,6 +94,7 @@ function SpecificTripPage() {
             .catch(err => console.log(err))
     }
 
+    // reguardless of what the user does, this will save the new vote data
     function onVote(data, diff) {
         API.setVote({
             voteData: data,
@@ -74,6 +104,7 @@ function SpecificTripPage() {
             .catch(err => console.log(err))
     }
 
+    // when the vote is deleted, the create vote will render
     function onDelete() {
         API.setVote({
             voteData: "",
@@ -93,6 +124,7 @@ function SpecificTripPage() {
     console.log(thisTripData.users)
     console.log(tripsComments)
 
+    // conditional component that only lists friends if they exist
     function FriendsList() {
         if (thisTripData.users) {
             return thisTripData.users.map(friend =>
@@ -106,13 +138,14 @@ function SpecificTripPage() {
         }
     }
 
+    // conditional component based on if there are comments
     function CommentList() {
         if (thisTripData.users) {
             return (
                 <ListGroup>
                     {tripsComments.map(comment =>
                         <ListGroup.Item key={comment.id} style={{ backgroundColor: "rgb(76,108,116, 0.9)", marginBottom: "1%" }}>
-                            {comment.text} -- {comment.user.user_name} at {comment.createdAt} 
+                            {comment.text} -- {comment.user.user_name} at {comment.createdAt}
                             {/* <Button className="btn-x" style={{ backgroundColor: "rgb(76,108,116)" }} onClick={deleteFriend} id={friend.traveller.id}>X</Button> */}
                         </ListGroup.Item>
                     )}
@@ -123,6 +156,7 @@ function SpecificTripPage() {
         }
     }
 
+    // conditional component based onif the user is the admin of the trip or not
     function ShowButton() {
         if (Admin === true) {
             return <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={onDelete}>Delete Vote Data</Button>
@@ -130,32 +164,6 @@ function SpecificTripPage() {
             return null
         }
     }
-
-    function isAdmin() {
-        console.log(currentUser)
-        API.isAdmin({
-            tripId: id,
-            userId: currentUser.id
-        })
-            .then(res => setAdmin(res.data.is_admin))
-            .catch(err => console.log(err))
-
-    }
-
-    function onComment() {
-        let newComment = document.getElementById("newComment").value.trim()
-        API.addNewComment({
-            tripId: id,
-            userId: currentUser.id,
-            text: newComment
-        })
-            .then(res => getThisTrip())
-            // .then(alert(`${enteredEmail} added`))
-            .catch(err => console.log(err))
-
-    }
-
-    console.log(`this is tripdata ${Admin}`)
 
     return (
         <Container>

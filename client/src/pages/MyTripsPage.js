@@ -13,6 +13,7 @@ function MyTripsPage() {
         getMyTrips()
     }, [])
 
+    // fetches trip of current user
     function getMyTrips() {
         document.getElementById("tripName").value = "";
         API.getMyTrips(currentUser.id)
@@ -21,6 +22,7 @@ function MyTripsPage() {
             .catch(err => console.log(err))
     }
 
+    // adds a new trip
     function onClick() {
         let tripName = document.getElementById("tripName").value
         console.log(tripName)
@@ -30,6 +32,7 @@ function MyTripsPage() {
             .then(res => addAssociation(res.data.id))
     }
 
+    // joins the trip to the user
     function addAssociation(tripNumber) {
         console.log(`this is the trip id in initial association${tripNumber}`)
         API.addAssociation({
