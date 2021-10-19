@@ -22,6 +22,22 @@ function MyTripsPage() {
             .catch(err => console.log(err))
     }
 
+    // conditional render of trips
+    function TripsList() {
+        if (myTrips.length > 0) {
+            return (
+                myTrips.map(trip =>
+                    <Row key={trip.trip.id}>
+                        <Link className="accordion-title" to={"/myTrips/" + trip.trip.id}>
+                            <Button style={{ backgroundColor: "rgb(76,108,116)" }}>{trip.trip.trip_name}</Button>
+                        </Link>
+                    </Row>
+                ))
+        } else {
+            return <p>No Trips Yet</p>
+        }
+    }
+
     // adds a new trip
     function onClick() {
         let tripName = document.getElementById("tripName").value
@@ -47,17 +63,11 @@ function MyTripsPage() {
     return (
         <Container>
             <Row>
-                <Col style={{padding: "2%"}}>
-                <h2>{currentUser.user_name}'s Trips</h2>
-                    {myTrips.map(trip =>
-                        <Row key={trip.trip.id}>
-                            <Link className="accordion-title" to={"/myTrips/" + trip.trip.id}>
-                                <Button style={{ backgroundColor: "rgb(76,108,116)" }}>{trip.trip.trip_name}</Button>
-                            </Link>
-                        </Row>
-                    )}
+                <Col style={{ padding: "2%" }}>
+                    <h2>{currentUser.user_name}'s Trips</h2>
+                    <TripsList />
                 </Col>
-                <Col style={{padding: "2%"}}>
+                <Col style={{ padding: "2%" }}>
                     <h2>Add A New Trip Here</h2>
                     <Form>
                         <Form.Group className="mb-3" controlId="tripName">
