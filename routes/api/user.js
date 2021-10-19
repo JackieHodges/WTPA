@@ -3,6 +3,8 @@ const router = require('express').Router();
 
 router.route("/associate")
   .post(tripsController.addAssociation)
+
+router.route("/delete/:id")
   .delete(tripsController.deleteFriend)
 
 router.route("/:id")

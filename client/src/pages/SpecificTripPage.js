@@ -75,24 +75,21 @@ function SpecificTripPage() {
             .catch(err => console.log(err))
     }
 
-    // function deleteFriend(event){
-    //     event.preventDefault();
-    //     console.log(`this is friend id ${typeof parseInt(event.target.id)} and this is tripId ${typeof parseInt(id)}`)
-    //     API.deleteFriend({
-    //         tripId: parseInt(id),
-    //         userId: parseInt(event.target.id)
-    //     })
-    //     .then(res => console.log(res.data))
-    //     .then(res => getThisTrip())
-    //     .catch(err => console.log(err))
-    // }
+    function deleteFriend(event){
+        API.deleteFriend(event.target.id)
+        .then(res => console.log(res.data))
+        .then(res => getThisTrip())
+        .catch(err => console.log(err))
+    }
+
+    console.log(thisTripData.users)
 
     function FriendsList() {
         if (thisTripData.users) {
             return thisTripData.users.map(friend =>
                 <p key={friend.id} >
-                    {friend.email}
-                    {/* <Button onClick={deleteFriend} id={friend.id}>X</Button> */}
+                    {friend.email} 
+                    <Button className="btn-x" style={{ backgroundColor: "rgb(76,108,116)" }} onClick={deleteFriend} id={friend.traveller.id}>X</Button>
                 </p>
             )
         } else {

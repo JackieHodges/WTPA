@@ -17,8 +17,8 @@ export default {
   addAssociation: function(tripData) {
     return axios.post("/api/user/associate/", tripData);
   },
-  deleteFriend: function(tripData) {
-    return axios.delete("/api/user/associate/", tripData);
+  deleteFriend: function(userData) {
+    return axios.delete("/api/user/delete/" + userData);
   },
   findOrCreateUser: function(userData) {
     return axios.post("/api/user/find/", userData)

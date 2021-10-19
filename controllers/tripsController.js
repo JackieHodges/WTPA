@@ -23,7 +23,9 @@ module.exports = {
   deleteFriend: function (req, res) {
     db.Traveller
       .destroy({
-        where: req.body
+        where: {
+          id: req.params.id
+        }
       })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
