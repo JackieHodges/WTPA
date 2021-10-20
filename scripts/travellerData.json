@@ -2,17 +2,17 @@
     {
         "tripId": 1,
         "userId": 1,
-        "is_admin": false
+        "is_admin": true
 
     },
     {
         "tripId": 1,
         "userId": 2,
-        "is_admin": true
+        "is_admin": false
     },
     {
         "tripId": 2,
         "userId": 1,
-        "is_admin": true
+        "is_admin": false
     }
 ]

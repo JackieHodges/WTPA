@@ -1,16 +1,16 @@
 [
     {
-        "text": "this is a test comment",
+        "text": "Please vote on the date!",
         "tripId": 1,
         "userId": 1
     },
     {
-        "text": "this is a test comment",
+        "text": "done & done",
         "tripId": 1,
         "userId": 2
     },
     {
-        "text": "plz comment",
+        "text": "I CAN'T WAIT!",
         "tripId": 2,
         "userId": 1
     }
