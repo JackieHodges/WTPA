@@ -4,6 +4,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { UserContext } from "../utils/UserContext";
+import MyTripsPage from "./MyTripsPage";
 
 function LandingPage() {
 
@@ -40,7 +41,8 @@ function LandingPage() {
     function ButtonChoice() {
         if (isAuthenticated) {
             return <Container>
-                <Row>
+                <MyTripsPage user={user}/>
+                {/* <Row>
                     <Col>
                         <h2>{currentUser.user_name}'s Dashboard</h2>
                         <h5>What would you like to do?</h5>
@@ -50,7 +52,7 @@ function LandingPage() {
                             </Button>
                         </Link>
                     </Col>
-                </Row>
+                </Row> */}
             </Container>
 
         } else {

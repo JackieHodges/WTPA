@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -7,11 +8,13 @@ import { UserContext } from "../utils/UserContext";
 function MyTripsPage() {
 
     const { currentUser } = useContext(UserContext);
+    const { user } = useAuth0();
+
     const [myTrips, setMyTrips] = useState([])
 
     useEffect(() => {
         getMyTrips()
-    }, [])
+    }, [user])
 
     // fetches trip of current user
     function getMyTrips() {
@@ -56,15 +59,16 @@ function MyTripsPage() {
             userId: currentUser.id,
             is_admin: true
         })
-            .then(res => getMyTrips())
-            .catch(err => console.log(err))
+        .then(getMyTrips())
+        .then(TripsList())
+        .catch(err => console.log(err))
     }
 
     return (
         <Container>
             <Row>
                 <Col style={{ padding: "2%" }}>
-                    <h2>{currentUser.user_name}'s Trips</h2>
+                    <h2>{user.given_name}'s Trips</h2>
                     <TripsList />
                 </Col>
                 <Col style={{ padding: "2%" }}>
