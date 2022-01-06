@@ -60,7 +60,6 @@ function MyTripsPage() {
             is_admin: true
         })
         .then(getMyTrips())
-        .then(TripsList())
         .catch(err => console.log(err))
     }
 
@@ -76,7 +75,7 @@ function MyTripsPage() {
                     <Form>
                         <Form.Group className="mb-3" controlId="tripName">
                             <Form.Label>Name Your Trip</Form.Label>
-                            <Form.Control type="text" placeholder="Trip Name Here" />
+                            <Form.Control autocomplete="off" type="text" placeholder="Trip Name Here" />
                         </Form.Group>
                         <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={onClick}>Submit</Button>
                     </Form>
