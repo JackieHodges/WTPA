@@ -19,7 +19,7 @@ function MyTripsPage() {
     // fetches trip of current user
     function getMyTrips() {
         API.getMyTrips(currentUser.id)
-            .then(res => setMyTrips(Array.from(res.data)))
+            .then(res => setMyTrips(res.data))
             .then(console.log(myTrips))
             .catch(err => console.log(err))
     }
