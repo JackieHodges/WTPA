@@ -10,7 +10,7 @@ function MyTripsPage() {
     const { currentUser } = useContext(UserContext);
     const { user } = useAuth0();
 
-    const [myTrips, setMyTrips] = useState({})
+    const [myTrips, setMyTrips] = useState([]);
 
     useEffect(() => {
         getMyTrips()
@@ -20,7 +20,7 @@ function MyTripsPage() {
     function getMyTrips() {
         API.getMyTrips(currentUser.id)
             .then(res => setMyTrips(res.data))
-            .then(console.log(typeof myTrips))
+            .then(console.log(typeof myTrips[0]))
             .catch(err => console.log(err))
     }
 
