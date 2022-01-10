@@ -10,7 +10,7 @@ function MyTripsPage() {
     const { currentUser } = useContext(UserContext);
     const { user } = useAuth0();
 
-    const [myTrips, setMyTrips] = useState([null])
+    const [myTrips, setMyTrips] = useState([])
 
     useEffect(() => {
         getMyTrips()
@@ -26,7 +26,7 @@ function MyTripsPage() {
 
     // conditional render of trips
     function TripsList() {
-        if (myTrips[0] !== null) {
+        if (myTrips.length > 0) {
             return (
                 myTrips.map(trip =>
                     <Row key={trip.trip.id}>
