@@ -10,7 +10,7 @@ function MyTripsPage() {
     const { currentUser } = useContext(UserContext);
     const { user } = useAuth0();
 
-    const [myTrips, setMyTrips] = useState([{}]);
+    const [myTrips, setMyTrips] = useState({});
 
     useEffect(() => {
         getMyTrips()
