@@ -14,15 +14,13 @@ function MyTripsPage() {
 
     useEffect(() => {
         getMyTrips()
-    }, [user])
-
-    console.log(`this is myTrips ${myTrips.length}`)
+    }, [])
 
     // fetches trip of current user
     function getMyTrips() {
-        // document.getElementById("tripName").value = "";
         API.getMyTrips(currentUser.id)
-            .then(res => setMyTrips(res.data))
+            .then(res => setMyTrips(Array.from(res.data)))
+            .then(console.log(myTrips))
             .catch(err => console.log(err))
     }
 
