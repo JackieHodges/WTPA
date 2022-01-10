@@ -10,7 +10,7 @@ function MyTripsPage() {
     const { currentUser } = useContext(UserContext);
     const { user } = useAuth0();
 
-    const [myTrips, setMyTrips] = useState([])
+    const [myTrips, setMyTrips] = useState({})
 
     useEffect(() => {
         getMyTrips()
@@ -20,7 +20,7 @@ function MyTripsPage() {
     function getMyTrips() {
         API.getMyTrips(currentUser.id)
             .then(res => setMyTrips(res.data))
-            .then(console.log(myTrips))
+            .then(console.log(typeof myTrips))
             .catch(err => console.log(err))
     }
 
@@ -34,7 +34,8 @@ function MyTripsPage() {
                             <Button style={{ backgroundColor: "rgb(76,108,116)" }}>{trip.trip.trip_name}</Button>
                         </Link>
                     </Row>
-                ))
+                )
+            )
         } else {
             return <p>No Trips Yet</p>
         }
@@ -58,8 +59,8 @@ function MyTripsPage() {
             userId: currentUser.id,
             is_admin: true
         })
-        .then(getMyTrips())
-        .catch(err => console.log(err))
+            .then(getMyTrips())
+            .catch(err => console.log(err))
     }
 
     return (
