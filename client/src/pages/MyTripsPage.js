@@ -16,18 +16,19 @@ function MyTripsPage() {
         getMyTrips()
     }, [user])
 
+    console.log(`this is myTrips ${myTrips.length}`)
+
     // fetches trip of current user
     function getMyTrips() {
-        document.getElementById("tripName").value = "";
+        // document.getElementById("tripName").value = "";
         API.getMyTrips(currentUser.id)
             .then(res => setMyTrips(res.data))
-            .then(console.log(myTrips))
             .catch(err => console.log(err))
     }
 
     // conditional render of trips
     function TripsList() {
-        if (myTrips.length > 0) {
+        if (myTrips.length !== 0) {
             return (
                 myTrips.map(trip =>
                     <Row key={trip.trip.id}>
@@ -75,7 +76,7 @@ function MyTripsPage() {
                     <Form>
                         <Form.Group className="mb-3" controlId="tripName">
                             <Form.Label>Name Your Trip</Form.Label>
-                            <Form.Control autocomplete="off" type="text" placeholder="Trip Name Here" />
+                            <Form.Control autoComplete="off" type="text" placeholder="Trip Name Here" />
                         </Form.Group>
                         <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={onClick}>Submit</Button>
                     </Form>

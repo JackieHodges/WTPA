@@ -26,33 +26,13 @@ function LandingPage() {
             email: user.email
         })
             .then(res => setCurrentUser(res.data[0]))
-            .then(getMyTrips(currentUser.id))
-            .then(`this is the current user ${currentUser}`)
-            .catch(err => console.log(err))
-    }
-
-    function getMyTrips(id) {
-        API.getMyTrips(id)
-            .then(res => setMyTrips(res.data))
-            .catch(err => console.log(err))
     }
 
     // conditional component that changes once the user is authenticated
     function ButtonChoice() {
         if (isAuthenticated) {
             return <Container>
-                <MyTripsPage user={user}/>
-                {/* <Row>
-                    <Col>
-                        <h2>{currentUser.user_name}'s Dashboard</h2>
-                        <h5>What would you like to do?</h5>
-                        <Link to="/myTrips">
-                            <Button style={{ backgroundColor: "rgb(76,108,116)" }} variant="primary">
-                                My Trips
-                            </Button>
-                        </Link>
-                    </Col>
-                </Row> */}
+                <MyTripsPage />
             </Container>
 
         } else {
