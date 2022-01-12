@@ -14,7 +14,7 @@ function MyTripsPage(props) {
 
     useEffect(() => {
         getMyTrips()
-    }, [])
+    }, [user])
 
     // fetches trip of current user
     function getMyTrips() {
