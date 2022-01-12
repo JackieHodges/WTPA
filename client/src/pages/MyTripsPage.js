@@ -19,7 +19,13 @@ function MyTripsPage() {
     // fetches trip of current user
     function getMyTrips() {
         API.getMyTrips(currentUser.id)
-            .then(res => setMyTrips(res.data))
+            .then(res => {
+                let trips = []
+                res.data.forEach(element => {
+                    trips.push(element.trip)
+                })
+                setMyTrips(trips)
+            })
             .catch(err => console.log(err))
     }
 
@@ -32,9 +38,9 @@ function MyTripsPage() {
         } else if (myTrips.length > 0) {
             return (
                 myTrips.map(trip =>
-                    <Row key={trip.trip.id}>
-                        <Link className="accordion-title" to={"/myTrips/" + trip.trip.id}>
-                            <Button style={{ backgroundColor: "rgb(76,108,116)" }}>{trip.trip.trip_name}</Button>
+                    <Row key={trip.id}>
+                        <Link className="accordion-title" to={"/myTrips/" + trip.id}>
+                            <Button style={{ backgroundColor: "rgb(76,108,116)" }}>{trip.trip_name}</Button>
                         </Link>
                     </Row>
                 )
