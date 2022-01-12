@@ -33,9 +33,7 @@ function MyTripsPage() {
 
     // conditional render of trips
     function TripsList() {
-        if (!myTrips.length) {
-            return <p>Loading</p>
-        } else if (myTrips.length > 0) {
+        if (myTrips.length > 0) {
             return (
                 myTrips.map(trip =>
                     <Row key={trip.id}>
@@ -58,6 +56,7 @@ function MyTripsPage() {
             trip_name: tripName
         })
             .then(res => addAssociation(res.data.id))
+            .then(getMyTrips())
     }
 
     // joins the trip to the user
