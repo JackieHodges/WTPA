@@ -32,7 +32,7 @@ function LandingPage() {
     function ButtonChoice() {
         if (isAuthenticated) {
             return <Container>
-                <MyTripsPage />
+                <MyTripsPage userId={currentUser.id} />
             </Container>
 
         } else {

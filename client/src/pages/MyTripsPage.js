@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { UserContext } from "../utils/UserContext";
 
-function MyTripsPage() {
+function MyTripsPage(props) {
 
     const { currentUser } = useContext(UserContext);
     const { user } = useAuth0();
@@ -18,7 +18,7 @@ function MyTripsPage() {
 
     // fetches trip of current user
     function getMyTrips() {
-        API.getMyTrips(currentUser.id)
+        API.getMyTrips(props.userId)
             .then(res => {
                 let trips = []
                 res.data.forEach(element => {
