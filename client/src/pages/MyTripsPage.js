@@ -18,6 +18,7 @@ function MyTripsPage(props) {
 
     // fetches trip of current user
     function getMyTrips() {
+        setMyTrips([])
         API.getMyTrips(props.userId)
             .then(res => {
                 let trips = []
@@ -29,7 +30,8 @@ function MyTripsPage(props) {
             .catch(err => console.log(err))
     }
 
-    console.log(myTrips)
+    console.log(`this is myTrips ${myTrips}`)
+    console.log(`this is the props userID ${props.userId}`)
 
     // conditional render of trips
     function TripsList() {
