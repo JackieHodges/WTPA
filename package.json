@@ -2,6 +2,9 @@
   "name": "WTPA",
   "version": "1.0.0",
   "description": "Wheres The Party At: React Trip Planning App",
+  "engines": {
+    "node": "18.x || 16.x"
+  },
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
