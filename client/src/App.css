@@ -1,49 +1,14 @@
 * {
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Magra', sans-serif;
 }
 
 .App {
   text-align: center;
-  background-image: url('./images/orfeas-green-G5A5ZNjS2tE-unsplash.jpg');
-  /* background-color: rgb(75, 75, 75); */
-  background-position: 'center';
-  background-size:cover;
-  /* background-repeat: 'no-repeat'; */
-  /* width: '100vw';
-  height: '100vh';  */
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  background-color: rgba(231,230,226, 0.6);
-  padding: 1%
-}
-
-p {
-  font-weight: bolder;
-}
-
-.row {
-  background-color: rgb(147,134,121, 0.8);
-}
-
-.container {
-  padding-top: 11%;
-  padding-bottom: 11%;
-}
-
-.btn-primary {
-  margin-top: 1%;
-  margin-bottom: 1%;
-  background-color: rgb(76,108,116);
-}
-
-.col {
-  padding-top: 2%;
+  background-image: url('./images/depositphotos_81460466-stock-illustration-celebration-and-party-hand-drawn.jpeg');
+  flex:content;
+  place-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 form {

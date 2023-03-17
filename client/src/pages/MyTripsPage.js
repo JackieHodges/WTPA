@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { UserContext } from "../utils/UserContext";
@@ -74,13 +74,13 @@ function MyTripsPage(props) {
     }
 
     return (
-        <Container>
-            <Row>
-                <Col style={{ padding: "2%" }}>
+        <div className="container">
+            <div className="flex flex-row">
+                <div style={{ padding: "2%" }}>
                     <h2>{user.given_name}'s Trips</h2>
                     <TripsList />
-                </Col>
-                <Col style={{ padding: "2%" }}>
+                </div>
+                <div style={{ padding: "2%" }}>
                     <h2>Add A New Trip Here</h2>
                     <Form>
                         <Form.Group className="mb-3" controlId="tripName">
@@ -89,9 +89,9 @@ function MyTripsPage(props) {
                         </Form.Group>
                         <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={onClick}>Submit</Button>
                     </Form>
-                </Col>
-            </Row>
-        </Container>
+                </div>
+            </div>
+        </div>
     )
 
 

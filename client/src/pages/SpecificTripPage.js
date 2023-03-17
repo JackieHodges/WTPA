@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Form, Button, Container, Row, Col, ListGroup } from "react-bootstrap";
+import { Form, Button, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router";
 import API from "../utils/API";
 import ReactVote from 'react-vote';
@@ -130,7 +130,7 @@ function SpecificTripPage() {
             return thisTripData.users.map(friend =>
                 <p key={friend.id} >
                     {friend.email}
-                    <Button className="btn-x" style={{ backgroundColor: "rgb(76,108,116)" }} onClick={deleteFriend} id={friend.traveller.id}>X</Button>
+                    <Button className="btn-x" style={{ backgrounddivor: "rgb(76,108,116)" }} onClick={deleteFriend} id={friend.traveller.id}>X</Button>
                 </p>
             )
         } else {
@@ -144,9 +144,9 @@ function SpecificTripPage() {
             return (
                 <ListGroup>
                     {tripsComments.map(comment =>
-                        <ListGroup.Item key={comment.id} style={{ backgroundColor: "rgb(76,108,116, 0.9)", marginBottom: "1%" }}>
+                        <ListGroup.Item key={comment.id} style={{ backgrounddivor: "rgb(76,108,116, 0.9)", marginBottom: "1%" }}>
                             {comment.text} -- {comment.user.user_name} at {comment.createdAt}
-                            {/* <Button className="btn-x" style={{ backgroundColor: "rgb(76,108,116)" }} onClick={deleteFriend} id={friend.traveller.id}>X</Button> */}
+                            {/* <Button className="btn-x" style={{ backgrounddivor: "rgb(76,108,116)" }} onClick={deleteFriend} id={friend.traveller.id}>X</Button> */}
                         </ListGroup.Item>
                     )}
                 </ListGroup>
@@ -159,51 +159,51 @@ function SpecificTripPage() {
     // conditional component based onif the user is the admin of the trip or not
     function ShowButton() {
         if (Admin === true) {
-            return <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={onDelete}>Delete Vote Data</Button>
+            return <Button style={{ backgrounddivor: "rgb(76,108,116)" }} onClick={onDelete}>Delete Vote Data</Button>
         } else {
             return null
         }
     }
 
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <h1>{thisTripData.trip_name}</h1>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <h2>Invited Friends:</h2>
-                    <FriendsList />
-                    <h3>Invite More Friends:</h3>
-                    <Form>
-                        <Form.Group className="mb-3" controlId="friendsEmails">
-                            <Form.Label>Add Friend's Emails Here</Form.Label>
-                            <Form.Control as="textarea" rows={3} placeholder="Please seperate emails using a comma. You can always add more later." />
-                        </Form.Group>
-                        <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={onClick}>Add Friend(s)</Button>
-                    </Form>
-                </Col>
-                <Col>
-                    <h2>Vote Here</h2>
-                    <ReactVote onCreate={onCreate} onUpvote={onVote} onClose={onVote} onExpand={onVote} onDownvote={onVote} onReset={onVote} isAdmin={Admin} clientId={currentUser.email} data={thisTripData.voteData} />
-                    <ShowButton />
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <h2>Comments</h2>
-                    <CommentList />
-                    <Form>
-                        <Form.Group className="mb-3" controlId="newComment">
-                            <Form.Control type="text" placeholder="Add comment here" />
-                            <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={onComment}>Add Comment</Button>
-                        </Form.Group>
-                    </Form>
-                </Col>
-            </Row>
-        </Container>
+        <div className="container">
+            <div className="flex flex-col">
+
+                <h1 className="mt-6">{thisTripData.trip_name}</h1>
+
+                <div className="flex flex-row">
+                    <div>
+                        <h2>Invited Friends:</h2>
+                        <FriendsList />
+                        <h3>Invite More Friends:</h3>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="friendsEmails">
+                                <Form.Label>Add Friend's Emails Here</Form.Label>
+                                <Form.Control as="textarea" rows={3} placeholder="Please seperate emails using a comma. You can always add more later." />
+                            </Form.Group>
+                            <Button style={{ backgrounddivor: "rgb(76,108,116)" }} onClick={onClick}>Add Friend(s)</Button>
+                        </Form>
+                    </div>
+                    <div>
+                        <h2>Vote Here</h2>
+                        <ReactVote onCreate={onCreate} onUpvote={onVote} onClose={onVote} onExpand={onVote} onDownvote={onVote} onReset={onVote} isAdmin={Admin} clientId={currentUser.email} data={thisTripData.voteData} />
+                        <ShowButton />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h2>Comments</h2>
+                        <CommentList />
+                        <Form>
+                            <Form.Group className="mb-3" controlId="newComment">
+                                <Form.Control type="text" placeholder="Add comment here" />
+                                <Button style={{ backgrounddivor: "rgb(76,108,116)" }} onClick={onComment}>Add Comment</Button>
+                            </Form.Group>
+                        </Form>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 
