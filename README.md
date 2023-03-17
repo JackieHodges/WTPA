@@ -23,4 +23,4 @@ To begin, sign up for an account using your name, email, and creating a password
 
 ### Deployed Link
 
-https://mighty-eyrie-25907.herokuapp.com/
+https://wtpa.herokuapp.com/
