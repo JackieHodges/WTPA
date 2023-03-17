@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Form, Row } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { UserContext } from "../utils/UserContext";
@@ -38,11 +38,11 @@ function MyTripsPage(props) {
         if (myTrips.length > 0) {
             return (
                 myTrips.map(trip =>
-                    <Row key={trip.id}>
+                    <div key={trip.id}>
                         <Link className="accordion-title" to={"/myTrips/" + trip.id}>
-                            <Button style={{ backgroundColor: "rgb(76,108,116)" }}>{trip.trip_name}</Button>
+                            <Button className="my-2">{trip.trip_name}</Button>
                         </Link>
-                    </Row>
+                    </div>
                 )
             )
         } else {
@@ -75,22 +75,22 @@ function MyTripsPage(props) {
 
     return (
         <div className="container">
-            <div className="flex flex-row">
-                <div style={{ padding: "2%" }}>
+            <div className="flex md:flex-row flex-col gap-x-12">
+                <div className="md:w-1/3 md:h-2/6 bg-white p-10 rounded-lg drop-shadow-2xl">
                     <h2>{user.given_name}'s Trips</h2>
                     <TripsList />
                 </div>
-                <div style={{ padding: "2%" }}>
+                <div className="md:w-1/3 md:h-2/6 bg-white p-10 rounded-lg drop-shadow-2xl">
                     <h2>Add A New Trip Here</h2>
                     <Form>
                         <Form.Group className="mb-3" controlId="tripName">
                             <Form.Label>Name Your Trip</Form.Label>
                             <Form.Control autoComplete="off" type="text" placeholder="Trip Name Here" />
                         </Form.Group>
-                        <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={onClick}>Submit</Button>
+                        <Button variant="primary" onClick={onClick}>Submit</Button>
                     </Form>
                 </div>
-            </div>
+                </div>
         </div>
     )
 

@@ -17,9 +17,17 @@ code {
 }
 
 .container .flex {
-  background: rgba(231,230,226);
+  background: rgb(246, 246, 246);
   flex:content;
   place-items: center;
   justify-content: center;
   height:calc(100vh - 57px);
+}
+
+.btn {
+  background-color: black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  padding-top: 2px;
 }

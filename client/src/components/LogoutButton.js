@@ -7,7 +7,7 @@ const LogoutButton = () => {
 
     return (
         isAuthenticated && (
-            <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={() => logout({ returnTo: window.location.origin })}>
+            <Button onClick={() => logout({ returnTo: window.location.origin })}>
                 Log Out
             </Button>
         )

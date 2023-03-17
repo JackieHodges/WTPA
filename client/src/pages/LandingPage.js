@@ -37,14 +37,14 @@ function LandingPage() {
         } else {
             return (
                 <div className="container">
-                    <div className="flex flex-col">
-                        <div>
-                            <h2>Where's The Party At?</h2>
+                    <div className="flex flex-col items-stretch">
+                        <div className="bg-white p-10 rounded-lg drop-shadow-2xl">
+                            <h1>Where's The Party At?</h1>
                             <h5>In need of a vacation? Having a hard time coordinating with a large group?</h5>
                             <h6>This app allows you to gather, plan, and finally execute your long-talked-about trip or event. </h6>
-                        </div>
-                        <div>
-                            <Button style={{ backgroundColor: "rgb(76,108,116)" }} onClick={loginWithRedirect}>Get Started</Button>
+                            <div className="d-grid mt-4">
+                            <Button size="lg"  onClick={loginWithRedirect}>Get Started</Button>
+                            </div>
                         </div>
                     </div>
                 </div>
