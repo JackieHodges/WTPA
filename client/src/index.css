@@ -21,7 +21,9 @@ code {
   flex:content;
   place-items: center;
   justify-content: center;
-  height:calc(100vh - 57px);
+  height:calc(100vh - 200px);
+  margin: 80px 0px 100px 0px ;
+  border-radius: 20px;
 }
 
 .btn {

@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Modal, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { UserContext } from "../utils/UserContext";
@@ -11,6 +11,8 @@ function MyTripsPage(props) {
     const { user } = useAuth0();
 
     const [myTrips, setMyTrips] = useState([]);
+    const [showModal, setShowModal] = useState(false)
+    const [showError, setShowError] = useState(false);
 
     useEffect(() => {
         getMyTrips()
@@ -40,7 +42,7 @@ function MyTripsPage(props) {
                 myTrips.map(trip =>
                     <div key={trip.id}>
                         <Link className="accordion-title" to={"/myTrips/" + trip.id}>
-                            <Button className="my-2">{trip.trip_name}</Button>
+                            <Button style={{ backgroundColor: "rgb(76,108,116)" }} className="mb-2">{trip.trip_name}</Button>
                         </Link>
                     </div>
                 )
@@ -53,12 +55,15 @@ function MyTripsPage(props) {
     // adds a new trip
     function onClick() {
         let tripName = document.getElementById("tripName").value
-        console.log(tripName)
-        API.createTrip({
-            trip_name: tripName
-        })
-            .then(res => addAssociation(res.data.id))
-            .then(getMyTrips())
+        if (!tripName || tripName === "") {
+            setShowError(true)
+        } else {
+            API.createTrip({
+                trip_name: tripName
+            })
+                .then(res => addAssociation(res.data.id))
+                .then(getMyTrips())
+        }
     }
 
     // joins the trip to the user
@@ -76,21 +81,27 @@ function MyTripsPage(props) {
     return (
         <div className="container">
             <div className="flex md:flex-row flex-col gap-x-12">
-                <div className="md:w-1/3 md:h-2/6 bg-white p-10 rounded-lg drop-shadow-2xl">
-                    <h2>{user.given_name}'s Trips</h2>
+                <div className="md:w-1/3 md:h-4/6 bg-white p-10 rounded-lg drop-shadow-2xl">
+                    <h2>{user.given_name}'s Plans</h2>
                     <TripsList />
+                    <Button variant="primary" onClick={() => setShowModal(true)}>Add New Trip</Button>
+                    <Modal show={showModal} onHide={() => setShowModal(false)}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Add New Trip</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body className="mt-2">
+                            <Form>
+                                <Form.Group className="mb-1" controlId="tripName">
+                                    <Form.Label>Name Your Trip</Form.Label>
+                                    <Form.Control className={showError && "ring-2 ring-[#dc3545]"} onChange={() => setShowError(false)} autoComplete="off" type="text" placeholder="Trip Name Here" />
+                                </Form.Group>
+                                <p className={showError ? "text-[#dc3545]" : "invisible"}>Please check your trip name and try again.</p>
+                                <Button className="mb-6" variant={showError ? "danger" : "primary"} onClick={onClick}>Submit</Button>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
                 </div>
-                <div className="md:w-1/3 md:h-2/6 bg-white p-10 rounded-lg drop-shadow-2xl">
-                    <h2>Add A New Trip Here</h2>
-                    <Form>
-                        <Form.Group className="mb-3" controlId="tripName">
-                            <Form.Label>Name Your Trip</Form.Label>
-                            <Form.Control autoComplete="off" type="text" placeholder="Trip Name Here" />
-                        </Form.Group>
-                        <Button variant="primary" onClick={onClick}>Submit</Button>
-                    </Form>
-                </div>
-                </div>
+            </div>
         </div>
     )
 

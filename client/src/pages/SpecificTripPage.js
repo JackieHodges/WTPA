@@ -171,7 +171,7 @@ function SpecificTripPage() {
 
                 <h1 className="mt-6">{thisTripData.trip_name}</h1>
 
-                <div className="flex flex-row">
+                <div className="flex flex-row gap-x-10">
                     <div>
                         <h2>Invited Friends:</h2>
                         <FriendsList />
