@@ -63,6 +63,7 @@ function MyTripsPage(props) {
             })
                 .then(res => addAssociation(res.data.id))
                 .then(getMyTrips())
+            setShowModal(false)
         }
     }
 
@@ -80,27 +81,27 @@ function MyTripsPage(props) {
 
     return (
         <div className="container">
-                <div className="bg-white max-h-1/2 p-6 pb-10 rounded-lg drop-shadow-2xl absolute inset-1/4 overflow-y-auto">
-                    <h2 className="sticky top-0 bg-white/75 mb-4">{user.given_name}'s Plans</h2>
-                    <TripsList />
-                    <Button variant="primary" onClick={() => setShowModal(true)}>Add New Trip</Button>
-                    <Modal show={showModal} onHide={() => setShowModal(false)}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Add New Trip</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body className="mt-2">
-                            <Form>
-                                <Form.Group className="mb-1" controlId="tripName">
-                                    <Form.Label>Name Your Trip</Form.Label>
-                                    <Form.Control className={showError && "ring-2 ring-[#dc3545]"} onChange={() => setShowError(false)} autoComplete="off" type="text" placeholder="Trip Name Here" />
-                                </Form.Group>
-                                <p className={showError ? "text-[#dc3545]" : "invisible"}>Please check your trip name and try again.</p>
-                                <Button className="mb-6" variant={showError ? "danger" : "primary"} onClick={onClick}>Submit</Button>
-                            </Form>
-                        </Modal.Body>
-                    </Modal>
-                </div>
+            <div className="bg-white max-h-1/2 p-6 pb-10 rounded-lg drop-shadow-2xl absolute inset-1/4 overflow-y-auto">
+                <h2 className="sticky top-0 bg-white/75 mb-4">{user.given_name}'s Plans</h2>
+                <TripsList />
+                <Button variant="primary" onClick={() => setShowModal(true)}>Add New Trip</Button>
+                <Modal show={showModal} onHide={() => setShowModal(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Add New Trip</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="mt-2">
+                        <Form>
+                            <Form.Group className="mb-1" controlId="tripName">
+                                <Form.Label>Name Your Trip</Form.Label>
+                                <Form.Control className={showError && "ring-2 ring-[#dc3545]"} onChange={() => setShowError(false)} autoComplete="off" type="text" placeholder="Trip Name Here" />
+                            </Form.Group>
+                            <p className={showError ? "text-[#dc3545]" : "invisible"}>Please check your trip name and try again.</p>
+                            <Button className="mb-6" variant={showError ? "danger" : "primary"} onClick={onClick}>Submit</Button>
+                        </Form>
+                    </Modal.Body>
+                </Modal>
             </div>
+        </div>
     )
 
 

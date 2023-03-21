@@ -11,6 +11,7 @@ function SpecificTripPage() {
     const [thisTripData, setThisTripData] = useState({})
     const [tripsComments, setTripsComments] = useState([])
     const [showModal, setShowModal] = useState(false)
+    const [showError, setShowError] = useState(false);
     const [Admin, setAdmin] = useState(false)
     const { currentUser } = useContext(UserContext);
 
@@ -45,16 +46,21 @@ function SpecificTripPage() {
 
     // adds new users to a trip
     function onClick() {
-        let groupMembers = document.getElementById("friendsEmails").value.trim()
-        let groupMembersArray = groupMembers.split(", ");
-        groupMembersArray.forEach(enteredEmail => {
-            API.findOrCreateFriend({
-                email: enteredEmail
+        let groupMembers = document.getElementById("friendsEmails").value.trim().split(", ")
+        const validateEmails = groupMembers.filter(email => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
+        if (groupMembers.length === validateEmails.length) {
+            groupMembers.forEach(enteredEmail => {
+                API.findOrCreateFriend({
+                    email: enteredEmail
+                })
+                    .then(res => associateTrip(res.data[0]))
+                    // .then(alert(`${enteredEmail} added`))
+                    .catch(err => console.log(err))
             })
-                .then(res => associateTrip(res.data[0]))
-                // .then(alert(`${enteredEmail} added`))
-                .catch(err => console.log(err))
-        })
+            setShowModal(false)
+        } else {
+            setShowError(true);
+        }
     }
 
     // adds a new comment
@@ -174,14 +180,15 @@ function SpecificTripPage() {
                         <Button onClick={() => setShowModal(true)}>Invite More Friends</Button>
                         <Modal show={showModal} onHide={() => setShowModal(false)}>
                             <Modal.Header closeButton>
-                                <Modal.Title>Add New Trip</Modal.Title>
+                                <Modal.Title>Add Friends</Modal.Title>
                             </Modal.Header>
                             <Modal.Body className="mt-2">
                                 <Form>
                                     <Form.Group className="mb-3" controlId="friendsEmails">
                                         <Form.Label>Add Friend's Emails Here</Form.Label>
-                                        <Form.Control as="textarea" rows={3} placeholder="Please seperate emails using a comma. You can always add more later." />
+                                        <Form.Control onChange={() => setShowError(false)} className={showError && "ring-2 ring-[#dc3545]"} as="textarea" rows={3} placeholder="Please seperate emails using a comma. You can always add more later." />
                                     </Form.Group>
+                                    <p className={showError ? "text-[#dc3545]" : "invisible"}>Please check the entered emails and try again.</p>
                                     <Button style={{ backgrounddivor: "rgb(76,108,116)" }} onClick={onClick}>Add Friend(s)</Button>
                                 </Form>
                             </Modal.Body>
