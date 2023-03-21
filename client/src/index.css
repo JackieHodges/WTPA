@@ -20,6 +20,7 @@ code {
   background: rgb(246, 246, 246);
   flex:content;
   place-items: center;
+  position:relative;
   justify-content: center;
   height:calc(100vh - 200px);
   margin: 80px 0px 100px 0px ;

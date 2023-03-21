@@ -164,9 +164,9 @@ function SpecificTripPage() {
     return (
         <div className="container overflow-y-auto">
             <h1 className="mb-4">{thisTripData.trip_name}</h1>
-            <div className="flex sm:flex-row sm:gap-x-10 flex-col gap-y-4">
+            <div className="flex md:flex-row md:gap-x-10 flex-col gap-y-4 justify-center mx-6">
                 <div className="sm:flex sm:flex-col sm:gap-y-8">
-                    <div>
+                    <div className="bg-white p-10 rounded-lg drop-shadow-2xl">
                         <h2>Invited Friends:</h2>
                         <div className="overflow-y-auto max-h-48">
                             <FriendsList />
@@ -189,7 +189,7 @@ function SpecificTripPage() {
                     </div>
                 </div>
 
-                <div className="mt-2">
+                <div className="bg-white p-10 rounded-lg drop-shadow-2xl">
                     <h2>Comments</h2>
                     <div className="overflow-y-auto">
                         {tripsComments.length > 0 ? tripsComments.map(comment => (
@@ -207,7 +207,7 @@ function SpecificTripPage() {
                         </Form.Group>
                     </Form>
                 </div>
-                <div>
+                <div className="bg-white p-10 rounded-lg drop-shadow-2xl">
                     <h2>Vote Here</h2>
                     <ReactVote onCreate={onCreate} onUpvote={onVote} onClose={onVote} onExpand={onVote} onDownvote={onVote} onReset={onVote} isAdmin={Admin} clientId={currentUser.email} data={thisTripData.voteData} />
                     <ShowButton />

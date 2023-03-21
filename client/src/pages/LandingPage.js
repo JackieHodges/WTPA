@@ -37,7 +37,7 @@ function LandingPage() {
         } else {
             return (
                 <div className="container">
-                    <div className="flex flex-col items-stretch">
+                    <div className="flex flex-col items-stretch absolute inset-1/4">
                         <div className="bg-white p-10 rounded-lg drop-shadow-2xl">
                             <h1>Where's The Party At?</h1>
                             <h5>In need of a vacation? Having a hard time coordinating with a large group?</h5>

@@ -80,8 +80,8 @@ function MyTripsPage(props) {
 
     return (
         <div className="container">
-                <div className="bg-white p-10 rounded-lg drop-shadow-2xl">
-                    <h2>{user.given_name}'s Plans</h2>
+                <div className="bg-white max-h-1/2 p-6 pb-10 rounded-lg drop-shadow-2xl absolute inset-1/4 overflow-y-auto">
+                    <h2 className="sticky top-0 bg-white/75 mb-4">{user.given_name}'s Plans</h2>
                     <TripsList />
                     <Button variant="primary" onClick={() => setShowModal(true)}>Add New Trip</Button>
                     <Modal show={showModal} onHide={() => setShowModal(false)}>
