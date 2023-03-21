@@ -16,7 +16,7 @@ code {
     monospace;
 }
 
-.container .flex {
+.container {
   background: rgb(246, 246, 246);
   flex:content;
   place-items: center;

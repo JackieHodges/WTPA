@@ -8,7 +8,7 @@ function NavBar() {
 
     return (
         <Navbar bg="dark" variant="dark">
-            <div className="container px-2">
+            <div className="px-2">
                 <Link to="/">
                     <Navbar.Brand>WTPA</Navbar.Brand>
                 </Link>

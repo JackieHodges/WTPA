@@ -80,8 +80,7 @@ function MyTripsPage(props) {
 
     return (
         <div className="container">
-            <div className="flex md:flex-row flex-col gap-x-12">
-                <div className="md:w-1/3 md:h-4/6 bg-white p-10 rounded-lg drop-shadow-2xl">
+                <div className="bg-white p-10 rounded-lg drop-shadow-2xl">
                     <h2>{user.given_name}'s Plans</h2>
                     <TripsList />
                     <Button variant="primary" onClick={() => setShowModal(true)}>Add New Trip</Button>
@@ -102,7 +101,6 @@ function MyTripsPage(props) {
                     </Modal>
                 </div>
             </div>
-        </div>
     )
 
 
