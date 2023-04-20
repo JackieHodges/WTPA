@@ -9,6 +9,8 @@ services:
     plan: starter # optional; defaults to starter
     numInstances: 1
     envVars:
+      - key: JAWSDB_URL # Imported from Heroku app
+        value: mysql://p8z8zwowccqhwbma:bq4mj3z8knhhh9mf@r4wkv4apxn9btls2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/yja1kfc9vdlgg59h
       - key: REACT_APP_AUTH0_CLIENT_ID # Imported from Heroku app
         value: arwv94ntk2DhsZ6upnChbJVLtUC9Xwop
       - key: REACT_APP_AUTH0_DOMAIN # Imported from Heroku app
