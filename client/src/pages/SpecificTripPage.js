@@ -66,14 +66,17 @@ function SpecificTripPage() {
     // adds a new comment
     function onComment() {
         let newComment = document.getElementById("newComment").value.trim()
-        API.addNewComment({
-            tripId: id,
-            userId: currentUser.id,
-            text: newComment
-        })
-            .then(res => getThisTrip())
-            // .then(alert(`${enteredEmail} added`))
-            .catch(err => console.log(err))
+        if (newComment) {
+            API.addNewComment({
+                tripId: id,
+                userId: currentUser.id,
+                text: newComment
+            })
+                .then(res => getThisTrip())
+                // .then(alert(`${enteredEmail} added`))
+                .catch(err => console.log(err))
+            document.getElementById("newComment").value = "";
+        }
     }
 
     // creates the join between the trip and user
@@ -198,7 +201,7 @@ function SpecificTripPage() {
 
                 <div className="bg-white p-10 rounded-lg drop-shadow-2xl">
                     <h2>Comments</h2>
-                    <div className="overflow-y-auto">
+                    <div className="overflow-y-auto max-h-64 w-full">
                         {tripsComments.length > 0 ? tripsComments.map(comment => (
                             <div key={comment.id}>
                                 <p>{comment.text}</p>
@@ -207,8 +210,8 @@ function SpecificTripPage() {
                             <p>No Comments Added Yet.</p>
                         }
                     </div>
-                    <Form>
-                        <Form.Group className="mb-3" controlId="newComment">
+                    <Form className="mt-4">
+                        <Form.Group controlId="newComment">
                             <Form.Control type="text" placeholder="Add comment here" />
                             <Button onClick={onComment}>Add Comment</Button>
                         </Form.Group>
